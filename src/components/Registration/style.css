@@ -1,0 +1,7 @@
+.btn_hover{
+    transition: 0.4s;
+}
+.btn_hover:hover{
+    transform: scale(0.95);
+    text-shadow: 0 0 10px white;
+}
