@@ -248,13 +248,13 @@ const GoalSetting = () => {
 
   return (
     <Wrapper>
-      <GoalDetails>
+      <GoalDetails className='p-0'>
         <Header>Track your progress</Header>
         <Picture></Picture>
 
-        <p className='mx-5'>Welcome to the Track your Progress page, your key to achieving your fitness goals and celebrating your success! Consistency is the secret to lasting progress, and logging your daily activity is your roadmap to fitness triumph. Embrace the power of accountability and watch your journey unfold one day at a time. Start today and see how each small effort compounds into significant achievements. Together, we'll make every day count on your path to a healthier, stronger you.</p>
+        <p className='mx-5 my-5' style={{ fontSize: "16px" }}>Welcome to the Track your Progress page, your key to achieving your fitness goals and celebrating your success! Consistency is the secret to lasting progress, and logging your daily activity is your roadmap to fitness triumph. Embrace the power of accountability and watch your journey unfold one day at a time. Start today and see how each small effort compounds into significant achievements. Together, we'll make every day count on your path to a healthier, stronger you.</p>
         <div className='mx-5'>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-primary py-2" data-toggle="modal" data-target="#exampleModal" style={{ width: "60px" }}>
             Add
           </button>
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -335,7 +335,7 @@ const GoalSetting = () => {
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" onClick={()=>{
+                  <button type="button" class="btn btn-primary" onClick={() => {
                     handleCreateTrack()
                   }}>Save changes</button>
                 </div>
@@ -344,9 +344,29 @@ const GoalSetting = () => {
           </div>
         </div>
 
-        {result.map((track, index) => (
-        <TrackTable key={index} track={track} />
-      ))}
+
+        <div className="table-container">
+          <table className="soft-ui-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Exercise</th>
+                <th>Reps</th>
+                <th>Sets</th>
+                <th>Sleep Time (in mins)</th>
+                <th>Steps</th>
+                <th>Water Intake (in ltrs)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {result.map((track, index) => (
+                <TrackTable key={index} track={track} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+
 
 
       </GoalDetails>
@@ -354,36 +374,18 @@ const GoalSetting = () => {
   );
 };
 
-function TrackTable({track}){
-  return(
-    <div className="table-container">
-      <table className="soft-ui-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Exercise</th>
-            <th>Reps</th>
-            <th>Sets</th>
-            <th>Sleep Time (in mins)</th>
-            <th>Steps</th>
-            <th>Water Intake (in ltrs)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{new Date(track.date).toLocaleDateString()}</td>
-            <td>{track.category}</td>
-            <td>{track.exercise}</td>
-            <td>{track.reps}</td>
-            <td>{track.sets}</td>
-            <td>{track.sleep_time}</td>
-            <td>{track.steps}</td>
-            <td>{track.water_intake}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+function TrackTable({ track }) {
+  return (
+    <tr>
+      <td>{new Date(track.date).toLocaleDateString()}</td>
+      <td>{track.category}</td>
+      <td>{track.exercise}</td>
+      <td>{track.reps}</td>
+      <td>{track.sets}</td>
+      <td>{track.sleep_time}</td>
+      <td>{track.steps}</td>
+      <td>{track.water_intake}</td>
+    </tr>
   )
 }
 

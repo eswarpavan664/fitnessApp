@@ -31,7 +31,9 @@ import {
   Container,
   Nav,
   ListItem,
-  UndorderList
+  UndorderList,
+  FormField,
+  Input
 } from './styles';
 import { logout } from 'slices/authSlice';
 import Admin from 'components/Admin';
@@ -46,22 +48,24 @@ const App = () => {
 
   const [isNutirtion, setNutrition] = useState(false)
   const [isTracking, setTracking] = useState(false)
+  const [subject, setSubject] = useState(null)
+  const [msg, setMsg] = useState(null)
 
   let token = false
-  if (localStorage.getItem("token") !="" && localStorage.getItem("token") != null && localStorage.getItem("token") != "undefined" && localStorage.getItem("token") != "null"){
+  if (localStorage.getItem("token") != "" && localStorage.getItem("token") != null && localStorage.getItem("token") != "undefined" && localStorage.getItem("token") != "null") {
     token = true
   }
   const username = useSelector(
     (state) => state.auth.user && state.auth.user.firstName
   );
 
-  
+
 
   return (
     <Router>
       <Wrapper>
-        <Container style={{background:!token?"gray":""}}>
-          <LeftSide style={{display:!token?"none":""}}>
+        <Container style={{ background: !token ? "gray" : "" }}>
+          <LeftSide style={{ display: !token ? "none" : "" }}>
             <Nav>
               <img
                 className='logo-abbr'
@@ -76,7 +80,7 @@ const App = () => {
                       height='2rem'
                       viewBox='0 0 448 512'
                       fill='#808080'
-                      onClick={()=>{
+                      onClick={() => {
                         setNutrition(false)
                         setTracking(false)
                       }}
@@ -92,7 +96,7 @@ const App = () => {
                       height='1.8rem'
                       viewBox='0 0 640 512'
                       fill='#808080'
-                      onClick={()=>{
+                      onClick={() => {
                         setNutrition(false)
                         setTracking(false)
                       }}
@@ -103,18 +107,18 @@ const App = () => {
                 </ListItem>
                 <ListItem>
                   <NavLink to='/nutrition' title='Nutrition'>
-                  <img src={nutrition} width={"25"} style={{ filter: !isNutirtion? 'grayscale(100%)':"" }} onClick={()=>{
-                    setNutrition(true)
-                    setTracking(false)
-                    }}  />
+                    <img src={nutrition} width={"25"} style={{ filter: !isNutirtion ? 'grayscale(100%)' : "" }} onClick={() => {
+                      setNutrition(true)
+                      setTracking(false)
+                    }} />
                   </NavLink>
                 </ListItem>
                 <ListItem>
-                  <NavLink to='/track-your-page' title='Track Your Page'>
-                    <img src={Tracking} onClick={()=>{
+                  <NavLink to='/track-your-page' title='Track Your progress'>
+                    <img src={Tracking} onClick={() => {
                       setNutrition(false)
                       setTracking(true)
-                      }} width={"25"} style={{ filter: !isTracking? 'grayscale(100%)':"" }}  />
+                    }} width={"25"} style={{ filter: !isTracking ? 'grayscale(100%)' : "" }} />
                   </NavLink>
                 </ListItem>
                 <ListItem>
@@ -124,7 +128,7 @@ const App = () => {
                       height='2rem'
                       viewBox='0 0 512 512'
                       fill='#808080'
-                      onClick={()=>{
+                      onClick={() => {
                         setNutrition(false)
                         setTracking(false)
                       }}
@@ -133,15 +137,15 @@ const App = () => {
                     </svg>
                   </NavLink>
                 </ListItem>
-                
-               
+
+
                 <ListItem>
                   <NavLink to='/events' fill='#6cc51d' title='Events'>
-                  
-                    <img src={sport} width={"25"} onClick={()=>{
-                        setNutrition(false)
-                        setTracking(false)
-                      }} />
+
+                    <img src={sport} width={"25"} onClick={() => {
+                      setNutrition(false)
+                      setTracking(false)
+                    }} />
                   </NavLink>
                 </ListItem>
               </UndorderList>
@@ -167,12 +171,16 @@ const App = () => {
                 </Navbar.Collapse>
               </ReactContainer>
             </Navbar>
+
             {token && (
-              <Header style={{padding:"10px 10px 10px 0"}}>
-                <div>{username}</div>
+              <Header style={{ padding: "10px 10px 10px 0" }}>
+                <button type="button" class="btn btn-info me-5 text-dark" data-toggle="modal" data-target="#exampleModal">
+                  Contact Us
+                </button>
+
                 <button
-                className='btn btn-danger'
-                style={{padding:"10px", background:"red", color:"white"}}
+                  className='btn btn-danger'
+                  style={{ padding: "10px", background: "red", color: "white" }}
                   type='button'
                   onClick={() => {
                     localStorage.clear()
@@ -183,8 +191,46 @@ const App = () => {
                 </button>
               </Header>
             )}
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Request query</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <FormField>
+                      <label>Subject:</label>
+                      <Input
+                        type='text'
+                        placeholder='Subject'
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                      />
+                    </FormField>
+                    <FormField>
+                      <label>Subject:</label>
+                      <textarea
+                        type='text'
+                        placeholder=''
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                        rows={12}
+                      ></textarea>
+                    </FormField>
+                    
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <Routes>
-              
+
               {token ? (
                 <>
                   <Route path='/' element={<Navigate to='/profile' />} />

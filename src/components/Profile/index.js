@@ -132,10 +132,10 @@ const Profile = () => {
   return (
     <Wrapper>
       <SelfDetails>
-        <Header>Profile Page</Header>
-        <Picture></Picture>
-        <AboutMe>Welcome to TrainRight - Your Path to a Healthier You!</AboutMe>
-        <Details>
+        <Header>Profile</Header>
+        <Picture className='m-0 p-0'></Picture>
+        <AboutMe className='m-0 p-0 mt-5' style={{fontSize:"20px"}}>Welcome to TrainRight - Your Path to a Healthier You!</AboutMe>
+        <Details className='m-0 p-0 w-100 mb-5' style={{fontSize:"16px"}}>
           We're excited to have you on board and embark on this fitness journey together. Whether you're a seasoned fitness enthusiast or just starting out, our app is designed to help you achieve your wellness goals. Get ready to sweat, smile, and thrive with our user-friendly features, personalized workouts, and a supportive community. Let's make every step, rep, and choice count towards a healthier and happier you.
           <br />
           Let's get started!
@@ -279,18 +279,18 @@ const Profile = () => {
 
 
           <div className='row align-items-center border my-5 rounded py-3'>
-            <h4 className='ms-2'>Let's calculate your BMI</h4>
-            <div className='col-md-4' >
+            <div className='col-md-6' >
+            <h2 className='ms-2 mb-5'>Let's calculate your BMI</h2>
               <div className=' d-block p-3 border ms-3 rounded' style={{ width: "50%" }}>
                 <div className='d-flex  justify-content-evenly align-items-center'>
-                  <h4 className='m-0 p-0'>Asia</h4>
+                  <h4 className='m-0 p-0'>Imperial</h4>
                   <label class="switch">
                     <input type="checkbox" onChange={()=>{
                       setAsia(!asia)
                     }} />
                     <span class="slider round"></span>
                   </label>
-                  <h4 className='m-0 p-0'>Americe</h4>
+                  <h4 className='m-0 p-0'>Metric</h4>
                 </div>
               </div>
               <form>
@@ -371,7 +371,7 @@ const Profile = () => {
                 </div>
               </form>
             </div>
-            <div className='col-md-3'>
+            <div className='col-md-6'>
               <BmiGuage>
                 {bmi && (
                   <div className='text-center'>
@@ -404,8 +404,8 @@ const Profile = () => {
                 )}
               </BmiGuage>
             </div>
-            <div className='col-md-5 px-5'>
-              {bmi &&
+            <div className='col-md-6 px-5'>
+                  <h2 className='mb-5'>My weight goal</h2>
                 <from>
                   <div className='row align-items-center'>
                     <div className='col-md-12'>
@@ -449,7 +449,7 @@ const Profile = () => {
                     </div>
                   </div>
                 </from>
-              }
+              
             </div>
           </div>
         </div>

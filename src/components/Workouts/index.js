@@ -196,9 +196,9 @@ const Workout = () => {
       <Header>Workouts</Header>
       <Picture></Picture>
       <Container>
-        <p className='mt-5'>Welcome to our Workouts page, where your journey to a healthier, stronger, and happier you begins! Physical fitness isn't just about looking good; it's about feeling your best and living your life to the fullest. We're here to inspire and motivate you on your path to a more active and vibrant lifestyle. Get ready to experience the joy of working out and discover the transformative power of prioritizing your physical well-being. Let's get moving!</p>
+        <p className='my-5' style={{fontSize:"16px"}}>Welcome to our Workouts page, where your journey to a healthier, stronger, and happier you begins! Physical fitness isn't just about looking good; it's about feeling your best and living your life to the fullest. We're here to inspire and motivate you on your path to a more active and vibrant lifestyle. Get ready to experience the joy of working out and discover the transformative power of prioritizing your physical well-being. Let's get moving!</p>
         <div>
-          <h1>Workout Planner</h1>
+
 
           <div class="soft-ui-container">
             <div style={{display:"flex", alignItems:"center"}}>

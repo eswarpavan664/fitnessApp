@@ -75,9 +75,9 @@ export const Header = styled.div`
   position: absolute;
   color: #fff;
   font-weight: bold;
-  top: 15rem;
+  top: 27rem;
   left: 12rem;
-  opacity: 0.6;
+  text-shadow:0 0 10px black;
   text-transform: uppercase;
 `;
 

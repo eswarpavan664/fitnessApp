@@ -91,3 +91,24 @@ export const UndorderList = styled.ul`
   height: 70vh;
   margin-top: 1rem;
 `;
+
+
+export const FormField = styled.div`
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  label {
+    color: #808080;
+  }
+  select {
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+  }
+`;
+
+export const Input = styled.input`
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+`;

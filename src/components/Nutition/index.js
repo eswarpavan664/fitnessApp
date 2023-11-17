@@ -16,11 +16,11 @@ function Nutrition() {
   };
   return (
     <div>
-      <div className='container-fluid'>
+      <div className='container-fluid p-3'>
 
-        <div className=''>
-          <div style={{height:"50vh", backgroundImage: `url(${bg})`, backgroundPosition:"center"}}></div>
-          <p className='mt-5'>Welcome to our Nutrition page! Achieving your desired physical fitness isn't just about exercise; it begins with what you put on your plate. Eating nutritious and balanced meals is a fundamental pillar of your health and fitness journey. Discover the key to nourishing your body for optimal performance and well-being right here. This page includes a suggested meal plan based on your profile. Please feel free to customize the recipes or the meal plan as per your convenience.</p>
+        <div className='bg-light p-4'>
+          <div className='bg-light' style={{height:"35vh", backgroundImage: `url(${bg})`, backgroundPosition:"center", position:"relative"}}><h2 style={{position:"absolute", bottom:10, left:10, color:"white", textShadow:"0 0 10px black", fontSize:"36px"}}>NUTRITION</h2></div>
+          <p className='mt-5' style={{fontSize:"16px"}}>Welcome to our Nutrition page! Achieving your desired physical fitness isn't just about exercise; it begins with what you put on your plate. Eating nutritious and balanced meals is a fundamental pillar of your health and fitness journey. Discover the key to nourishing your body for optimal performance and well-being right here. This page includes a suggested meal plan based on your profile. Please feel free to customize the recipes or the meal plan as per your convenience.</p>
           <div className='row'>
             <div className='col-4 p-5'>
               <div className='card'>

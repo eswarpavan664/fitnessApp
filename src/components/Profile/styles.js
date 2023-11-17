@@ -125,12 +125,11 @@ export const Header = styled.div`
   padding: 1.2rem;
   position: absolute;
   color: white;
-  background: lightgray;
   border-radius: 30px;
   // box-shadow: 0 0 10px white;
-  text-shadow: 0 0 20px black;
+  text-shadow: 0 0 30px black;
   font-weight: bold;
-  top: 22.1rem;
+  top: 21rem;
   left: 5rem;
   opacity: 1;
   text-transform: uppercase;

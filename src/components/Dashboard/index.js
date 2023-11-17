@@ -32,7 +32,7 @@ const Dashboard = () => {
   return (
    
       <div className='' style={{ height: "89vh", alignItems: "center", justifyContent: "center", background:"white", padding:"10px", margin:"10px" }}>
-        <div  style={{backgroundImage:`url(${banner})`, height:"60vh", position:"relative"}}>
+        <div  style={{backgroundImage:`url(${banner})`, height:"43vh", position:"relative"}}>
           <h1 style={{position:"absolute", bottom:20, fontSize:"3rem", left:30, fontWeight:"bold", color:"white", textShadow:"0 0 10px black"}}>DASHBOARD</h1>
         </div>
         <div className='row align-items-center mt-5'>
