@@ -9,14 +9,14 @@ function ForgetPassword() {
     const [email_flag, setEmailFlag] = useState(true)
     const [otp_flag, setOtpFlag] = useState(false)
     const [password_flag, setPasswordFlag] = useState(false)
-
+    const [id,setid]=useState("")
     const handleSendOtp = () => {
         if (!email) {
             alert("Provide email")
         } else {
 
-            setOtpFlag(true)
-            setEmailFlag(false)
+           
+            
 
             const apiUrl = 'http://localhost:5000/user/forgot_password';
             const postData = {
@@ -25,6 +25,14 @@ function ForgetPassword() {
 
             axios.post(apiUrl, postData)
                 .then(response => {
+                    if(response.data?.Status==200){
+                          setOtpFlag(true)
+                           setEmailFlag(false)
+                          
+                    // eslint-disable-next-line no-unused-expressions
+                    }else{
+                        alert(response.data?.message)
+                    }
                     console.log('Response:',  JSON.stringify(response));
                 })
                 .catch(error => {
@@ -32,7 +40,7 @@ function ForgetPassword() {
                 });
         }
     }
-
+    const [token,settoken]=useState("")
     const handleVerifyOtp = () => {
         
 
@@ -40,16 +48,28 @@ function ForgetPassword() {
             alert("Provide email")
         } else {
 
-            setPasswordFlag(true)
-        setOtpFlag(false)
+         
 
             const apiUrl = 'http://localhost:5000/user/verify_otp';
             const postData = {
-                otp: otp,
+                Otp: otp,
+                email:email
             };
 
             axios.post(apiUrl, postData)
                 .then(response => {
+                        if(response?.data?.Status==200){
+                             setPasswordFlag(true)
+                                setOtpFlag(false)
+                               setEmail("")
+                               setid(response?.data?.Data?.Id)
+                            
+                               settoken(response.data.Data.Token)
+                    // eslint-disable-next-line no-unused-expressions
+                    }else{
+                        alert(response.data?.message)
+                    }
+
                     console.log('Response:', JSON.stringify(response));
                 })
                 .catch(error => {
@@ -58,9 +78,32 @@ function ForgetPassword() {
         }
     }
 
-    const handleUpdatePassword = () => {
+   const handleUpdatePassword = () => {
+    if (password && con_password && password === con_password) {
+        const apiUrl = `http://localhost:5000/user/update_user/${id}`;
+        const postData = {
+            password: password,
+        };
 
+        axios.put(apiUrl, postData)
+            .then(response => {
+                if (response.data?.Status === 200) {
+                    localStorage.setItem("token", token);
+                    window.location.reload();
+                } else {
+                    alert(response.data?.message);
+                }
+
+                console.log('Response:', JSON.stringify(response));
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    } else {
+        alert("Password mismatched .... ");
     }
+}
+
 
     return (
         <div className=''>
@@ -138,7 +181,7 @@ function ForgetPassword() {
                             </div>
                             <div className='col-12'>
                                 <div className='text-center'>
-                                    <button className=' btn btn-primary p-3' onClick={() => handleVerifyOtp()}>Update</button>
+                                    <button className=' btn btn-primary p-3' onClick={() => handleUpdatePassword()}>Update</button>
                                 </div>
                             </div>
 
