@@ -41,6 +41,8 @@ import nutrition from "assets/Nutrition.png"
 import Nutrition from 'components/Nutition';
 import Tracking from "assets/tracking.png"
 import { useEffect } from 'react';
+import Users from 'components/Users';
+import ContactUs from 'components/Contact Us';
 
 const NotFound = () => <h2>404 - Page not found</h2>;
 
@@ -48,8 +50,12 @@ const App = () => {
 
   const [isNutirtion, setNutrition] = useState(false)
   const [isTracking, setTracking] = useState(false)
-  const [subject, setSubject] = useState(null)
-  const [msg, setMsg] = useState(null)
+
+  let access_token = localStorage.getItem('token')
+  const payload = access_token?.split('.')?.[1] ?? "" ;
+  const decodedPayload = JSON.parse( payload ? atob(payload) : "{}");
+
+  let is_admin = decodedPayload?.user_type
 
   let token = false
   if (localStorage.getItem("token") != "" && localStorage.getItem("token") != null && localStorage.getItem("token") != "undefined" && localStorage.getItem("token") != "null") {
@@ -148,6 +154,28 @@ const App = () => {
                     }} />
                   </NavLink>
                 </ListItem>
+                {is_admin == "admin" && <ListItem>
+                  <NavLink to='/users' title='Users'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16" style={{ color: "gray" }} onClick={() => {
+                      setNutrition(false)
+                      setTracking(false)
+                    }}>
+                      <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                    </svg>
+
+                  </NavLink>
+                </ListItem>}
+                <ListItem>
+                  <NavLink to='/contact_us' title='Contact Us'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" style={{color:"gray"}} fill="currentColor" class="bi bi-headset" viewBox="0 0 16 16" onClick={() => {
+                      setNutrition(false)
+                      setTracking(false)
+                    }}>
+                      <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5z" />
+                    </svg>
+
+                  </NavLink>
+                </ListItem>
               </UndorderList>
             </Nav>
           </LeftSide>
@@ -167,6 +195,8 @@ const App = () => {
                     <NavLink to='/track-your-page'>Goal Setting</NavLink>
                     <NavLink to='/workouts'>Workouts</NavLink>
                     <NavLink to='/registration'>Registration</NavLink>
+                    <NavLink to='/users'>Users</NavLink>
+                    <NavLink to='/contact_us'>Contact US</NavLink>
                   </ReactNav>
                 </Navbar.Collapse>
               </ReactContainer>
@@ -174,10 +204,6 @@ const App = () => {
 
             {token && (
               <Header style={{ padding: "10px 10px 10px 0" }}>
-                <button type="button" class="btn btn-info me-5 text-dark" data-toggle="modal" data-target="#exampleModal">
-                  Contact Us
-                </button>
-
                 <button
                   className='btn btn-danger'
                   style={{ padding: "10px", background: "red", color: "white" }}
@@ -191,44 +217,7 @@ const App = () => {
                 </button>
               </Header>
             )}
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Request query</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <FormField>
-                      <label>Subject:</label>
-                      <Input
-                        type='text'
-                        placeholder='Subject'
-                        value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
-                      />
-                    </FormField>
-                    <FormField>
-                      <label>Subject:</label>
-                      <textarea
-                        type='text'
-                        placeholder=''
-                        value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
-                        rows={12}
-                      ></textarea>
-                    </FormField>
-                    
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+
             <Routes>
 
               {token ? (
@@ -245,8 +234,9 @@ const App = () => {
                     element={<Registration />}
                   />
                   <Route path='/admin' exact element={<Admin />} />
+                  <Route path='/users' exact element={<Users />} />
+                  <Route path='/contact_us' exact element={<ContactUs />} />
                   <Route path='*' element={<Navigate to='/profile' />} />
-
                 </>
               ) : (
                 <>
@@ -255,6 +245,7 @@ const App = () => {
                   <Route path='/signup' element={<Signup />} />{' '}
                 </>
               )}
+
             </Routes>
           </RightSide>
         </Container>
