@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Wrapper,
   Form,
@@ -83,6 +83,11 @@ const Login = () => {
             />
             <SubmitButton type='submit'>Submit</SubmitButton>
           </Form>
+          <div className='text-end mt-4'>
+            <Link to={"/forget_password"}>
+            <p style={{fontSize:"10px", display:"inline", background:"#FAF6F0", cursor:"pointer"}} className='p-1 rounded '>Forgot Password</p>
+            </Link>
+          </div>
         </Body>
         <Footer>
           <Info>

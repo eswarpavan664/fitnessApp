@@ -43,6 +43,7 @@ import Tracking from "assets/tracking.png"
 import { useEffect } from 'react';
 import Users from 'components/Users';
 import ContactUs from 'components/Contact Us';
+import ForgetPassword from 'components/ForgetPassword';
 
 const NotFound = () => <h2>404 - Page not found</h2>;
 
@@ -236,12 +237,14 @@ const App = () => {
                   <Route path='/admin' exact element={<Admin />} />
                   <Route path='/users' exact element={<Users />} />
                   <Route path='/contact_us' exact element={<ContactUs />} />
+                  
                   <Route path='*' element={<Navigate to='/profile' />} />
                 </>
               ) : (
                 <>
                   <Route path='*' element={<Navigate to='/login' />} />
                   <Route path='/login' element={<Login />} />{' '}
+                  <Route path='/forget_password' element={<ForgetPassword />} />
                   <Route path='/signup' element={<Signup />} />{' '}
                 </>
               )}
