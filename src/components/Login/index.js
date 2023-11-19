@@ -35,9 +35,13 @@ const Login = () => {
 
     axios.post(apiUrl, postData)
       .then(response => {
-        console.log('Response:', response.data.Data.Token);
-        localStorage.setItem("token", response.data.Data.Token)
-        window.location.reload()
+          if(response?.data?.Status==200){
+                  console.log('Response:', response);
+              localStorage.setItem("token", response.data.Data.Token)
+               window.location.reload()
+          }else{
+            alert(response?.data?.message)
+          }
       })
       .catch(error => {
         console.error('Error:', error);
