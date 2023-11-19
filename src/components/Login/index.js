@@ -27,7 +27,7 @@ const Login = () => {
 
   const handleSubmit = () => {
 
-    const apiUrl = 'http://localhost:5000/user/signin';
+    const apiUrl = 'https://fitness-server-wwif.onrender.com/user/signin';
     const postData = {
       email: email,
       password: password,

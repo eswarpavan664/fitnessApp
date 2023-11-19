@@ -15,7 +15,7 @@ const Dashboard = () => {
     const token = localStorage.getItem('token');
     const [header, payload, signature] = token.split('.');
     const decodedPayload = JSON.parse(atob(payload));
-    const apiUrl = `http://localhost:5000/user/dashboard/${decodedPayload?.email}`;
+    const apiUrl = `https://fitness-server-wwif.onrender.com/user/dashboard/${decodedPayload?.email}`;
 
     axios.get(apiUrl)
       .then(response => {

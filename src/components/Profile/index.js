@@ -95,7 +95,7 @@ const Profile = () => {
     if (token) {
       const [header, payload, signature] = token.split('.');
       const decodedPayload = JSON.parse(atob(payload));
-      const apiUrl = `http://localhost:5000/user/get_user/${decodedPayload?.Id}`;
+      const apiUrl = `https://fitness-server-wwif.onrender.com/user/get_user/${decodedPayload?.Id}`;
 
       axios.get(apiUrl)
         .then(response => {
@@ -117,7 +117,7 @@ const Profile = () => {
   }
 
   const updateUserDetails = (e) => {
-    const apiUrl = `http://localhost:5000/user/update_user/${data?.Id}`;
+    const apiUrl = `https://fitness-server-wwif.onrender.com/user/update_user/${data?.Id}`;
     const postData = {
       FirstName: firstName || data?.first_name,
       LastName: lastName || data?.last_name,

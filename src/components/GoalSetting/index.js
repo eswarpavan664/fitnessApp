@@ -197,7 +197,7 @@ const GoalSetting = () => {
       const token = localStorage.getItem('token');
       const [header, payload, signature] = token.split('.');
       const decodedPayload = JSON.parse(atob(payload));
-      const apiUrl = 'http://localhost:5000/user/track/create';
+      const apiUrl = 'https://fitness-server-wwif.onrender.com/user/track/create';
       const postData = {
         email: decodedPayload?.email,
         date: date,
@@ -230,7 +230,7 @@ const GoalSetting = () => {
     const token = localStorage.getItem('token');
     const [header, payload, signature] = token.split('.');
     const decodedPayload = JSON.parse(atob(payload));
-    const apiUrl = `http://localhost:5000/user/track/get/${decodedPayload?.email}`;
+    const apiUrl = `https://fitness-server-wwif.onrender.com/user/track/get/${decodedPayload?.email}`;
 
     axios.get(apiUrl)
       .then(response => {

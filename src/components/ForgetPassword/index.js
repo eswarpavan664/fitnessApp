@@ -18,7 +18,7 @@ function ForgetPassword() {
            
             
 
-            const apiUrl = 'http://localhost:5000/user/forgot_password';
+            const apiUrl = 'https://fitness-server-wwif.onrender.com/user/forgot_password';
             const postData = {
                 email: email,
             };
@@ -50,7 +50,7 @@ function ForgetPassword() {
 
          
 
-            const apiUrl = 'http://localhost:5000/user/verify_otp';
+            const apiUrl = 'https://fitness-server-wwif.onrender.com/user/verify_otp';
             const postData = {
                 Otp: otp,
                 email:email
@@ -80,7 +80,7 @@ function ForgetPassword() {
 
    const handleUpdatePassword = () => {
     if (password && con_password && password === con_password) {
-        const apiUrl = `http://localhost:5000/user/update_user/${id}`;
+        const apiUrl = `https://fitness-server-wwif.onrender.com/user/update_user/${id}`;
         const postData = {
             password: password,
         };
