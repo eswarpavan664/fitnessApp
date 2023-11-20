@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import bg from 'assets/PROFILE_BG.jpg';
+import bg from 'assets/profile1.jpeg';
 
 export const Wrapper = styled.div`
   width: 100%;
