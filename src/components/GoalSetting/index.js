@@ -18,7 +18,7 @@ const GoalSetting = () => {
     "Chest",
     "Back",
     "Full Body",
-    "Rest",
+    
     "Cardio",
     "Olympic",
     "Stretches"
@@ -326,7 +326,7 @@ const GoalSetting = () => {
                       </div>
 
                       <div className="col-12">
-                        <input type="number" placeholder="Sleep time (min)" className="form-control" value={sleep} onChange={(e) => setSleep(e.target.value)} />
+                        <input type="number" placeholder="Sleep time (hours)" className="form-control" value={sleep} onChange={(e) => setSleep(e.target.value)} />
                       </div>
                     </div>
                   </div>
@@ -354,7 +354,7 @@ const GoalSetting = () => {
                 <th>Exercise</th>
                 <th>Reps</th>
                 <th>Sets</th>
-                <th>Sleep Time (in mins)</th>
+                <th>Sleep Time (hours)</th>
                 <th>Steps</th>
                 <th>Water Intake (in ltrs)</th>
               </tr>

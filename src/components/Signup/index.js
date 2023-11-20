@@ -41,6 +41,7 @@ const Signup = () => {
         LastName: lastName,
         email: email,
         password: password,
+        Role:"USER"
       };
 
       axios.post(apiUrl, postData)

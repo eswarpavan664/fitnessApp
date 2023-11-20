@@ -1,8 +1,41 @@
 import React, { useState } from 'react'
 import { FormField, Input } from './styles'
+import axios from 'axios'
 function ContactUs() {
     const [subject, setSubject] = useState(null)
     const [message, setMessage] = useState(null)
+
+
+      const SendEmail = () => {
+      
+
+           
+            
+
+         if(subject && message){
+                const apiUrl = 'https://fitness-server-wwif.onrender.com/send_email';
+            const postData = {
+                subject: subject,
+                message:message
+            };
+
+            axios.post(apiUrl, postData)
+                .then(response => {
+                    alert("your response successfully sent...")
+                    setSubject("")
+                    setMessage("")
+                    console.log('Response:',  JSON.stringify(response));
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+      
+         }else{
+            alert("all are required fields...")
+         }
+    }
+
+
     return (
         <div className='p-4'>
             <div className='bg-light ' style={{ height: "80vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -33,7 +66,7 @@ function ContactUs() {
                         </FormField>
                     </div>
                     <div className='text-end mt-5'>
-                        <button className='btn btn-success px-4 py-2' style={{ fontSize: "16px" }}>Submit</button>
+                        <button className='btn btn-success px-4 py-2' style={{ fontSize: "16px" }} onClick={SendEmail}>Submit</button>
                     </div>
                 </div>
             </div>
