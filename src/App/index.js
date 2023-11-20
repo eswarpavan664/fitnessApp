@@ -126,7 +126,7 @@ const App = () => {
                   </NavLink>
                 </ListItem>
                 <ListItem>
-                  <NavLink to='/track-your-page' title='Track Your progress'>
+                  <NavLink to='/track-your-page' title='Track Your Progress'>
                     <img src={Tracking} onClick={() => {
                       setNutrition(false)
                       setTracking(true)

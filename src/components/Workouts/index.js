@@ -144,7 +144,7 @@ const Workout = () => {
       { name: "Thruster", url: "https://www.youtube.com/embed/L219ltL15zk?si=dL42wCnRSKzYfGz9" },
     ],
     "Cardio": [
-      { name: "Aerobics", url: "https://www.youtube.com/embed/a44ayeoSfKM?si=g8UeRfxQLccKIkeb" },
+       
       { name: "Stairmaster", url: "https://www.youtube.com/embed/xSB39wbMz4w?si=NF7fh9XqmHnVMA2T" },
       { name: "Stationary Bike", url: "https://www.youtube.com/embed/NwwDBARCGgo?si=Gp0qtz1m7huVbU_R" },
       { name: "Elliptical Machine", url: "https://www.youtube.com/embed/YWfswVvOaiI?si=hhx93CV3uyA_XkUR" },

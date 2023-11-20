@@ -41,25 +41,25 @@ const Dashboard = () => {
         <div className='row align-items-center mt-5'>
           <div className='col-md-3 mb-4  '>
             <div className='border d-flex justify-content-between align-items-center w-100 p-5 dash_box' style={{ background: 'linear-gradient(to right, #9BBEC8 85%, #427D9D 50%)' }} >
-              <h4 className='m-0 p-0'>Total Sleep Time (hour)</h4>
+              <h4 className='m-0 p-0'>Total Sleep Time (hours)</h4>
               <p className='m-0 p-0 text-light'>{result?.totalSleepTime || ""}</p>
             </div>
           </div>
           <div className='col-md-3 mb-4'>
             <div className='border d-flex justify-content-between align-items-center w-100 p-5 dash_box' style={{ background: 'linear-gradient(to right, #9BBEC8 85%, #427D9D 50%)' }} >
-              <h4 className='m-0 p-0'>Water intake (ltrs)</h4>
+              <h4 className='m-0 p-0'>Water Intake (ltrs)</h4>
               <p className='m-0 p-0 text-light'>{result?.totalWaterIntake || ""}</p>
             </div>
           </div>
           <div className='col-md-3 mb-4'>
             <div className='border d-flex justify-content-between align-items-center w-100 p-5 dash_box' style={{ background: 'linear-gradient(to right, #9BBEC8 85%, #427D9D 50%)' }} >
-              <h4 className='m-0 p-0'>Total steps</h4>
+              <h4 className='m-0 p-0'>Total Steps</h4>
               <p className='m-0 p-0 text-light'>{result?.totalSteps || ""}</p>
             </div>
           </div>
            <div className='col-md-3 mb-4'>
             <div className='border d-flex justify-content-between align-items-center w-100 p-5 dash_box' style={{ background: 'linear-gradient(to right, #9BBEC8 85%, #427D9D 50%)' }} >
-              <h4 className='m-0 p-0'>Work</h4>
+              <h4 className='m-0 p-0'>Workouts</h4>
               <p className='m-0 p-0 text-light'>{result?.totalSteps || ""}</p>
             </div>
           </div>

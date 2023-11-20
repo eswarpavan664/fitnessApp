@@ -356,7 +356,7 @@ const GoalSetting = () => {
                 <th>Sets</th>
                 <th>Sleep Time (hours)</th>
                 <th>Steps</th>
-                <th>Water Intake (in ltrs)</th>
+                <th>Water Intake (ltrs)</th>
               </tr>
             </thead>
             <tbody>

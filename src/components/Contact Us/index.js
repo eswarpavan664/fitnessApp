@@ -21,7 +21,7 @@ function ContactUs() {
 
             axios.post(apiUrl, postData)
                 .then(response => {
-                    alert("your response successfully sent...")
+                    alert("your response was successfully sent...")
                     setSubject("")
                     setMessage("")
                     console.log('Response:',  JSON.stringify(response));
@@ -40,13 +40,13 @@ function ContactUs() {
         <div className='p-4'>
             <div className='bg-light ' style={{ height: "80vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <div className='w-50'>
-                    <h2 className='mb-5 ms-2'>Contact US</h2>
+                    <h2 className='mb-5 ms-2'>Contact Us</h2>
                     <div className=' mb-4' >
                         <FormField>
                             <label>Subject</label>
                             <Input
                                 type='text'
-                                placeholder='Last Name'
+                                placeholder='Subject'
                                 value={subject}
                                 onChange={(e) => setSubject(e.target.value)}
                                 style={{ width: "100%" }}
@@ -55,10 +55,10 @@ function ContactUs() {
                     </div>
                     <div className='' >
                         <FormField>
-                            <label>Message:</label>
+                            <label>Message</label>
                             <textarea
                                 type='email'
-                                placeholder='Email'
+                                placeholder='type your message'
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                                 rows={10}
