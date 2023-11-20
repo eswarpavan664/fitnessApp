@@ -44,6 +44,7 @@ import { useEffect } from 'react';
 import Users from 'components/Users';
 import ContactUs from 'components/Contact Us';
 import ForgetPassword from 'components/ForgetPassword';
+import AllUser from 'components/AllUser';
 
 const NotFound = () => <h2>404 - Page not found</h2>;
 
@@ -56,7 +57,7 @@ const App = () => {
   const payload = access_token?.split('.')?.[1] ?? "" ;
   const decodedPayload = JSON.parse( payload ? atob(payload) : "{}");
 
-  let is_admin = decodedPayload?.user_type
+  let is_admin = localStorage.getItem("role")
 
   let token = false
   if (localStorage.getItem("token") != "" && localStorage.getItem("token") != null && localStorage.getItem("token") != "undefined" && localStorage.getItem("token") != "null") {
@@ -80,7 +81,11 @@ const App = () => {
                 alt=''
               ></img>
               <UndorderList>
-                <ListItem>
+                 
+                      {is_admin!="ADMIN"?
+
+                        <>
+                        <ListItem>
                   <NavLink to='/profile' title='Profile'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
@@ -96,7 +101,7 @@ const App = () => {
                     </svg>
                   </NavLink>
                 </ListItem>
-                <ListItem>
+                            <ListItem>
                   <NavLink to='/workouts' title='Workouts'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
@@ -155,17 +160,28 @@ const App = () => {
                     }} />
                   </NavLink>
                 </ListItem>
-                {is_admin == "admin" && <ListItem>
-                  <NavLink to='/users' title='Users'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16" style={{ color: "gray" }} onClick={() => {
-                      setNutrition(false)
-                      setTracking(false)
-                    }}>
-                      <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                    </svg>
+                        </>:
 
+
+                        <ListItem>
+                  <NavLink to='/all_users' title='Profile'>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      height='2rem'
+                      viewBox='0 0 448 512'
+                      fill='#808080'
+                      onClick={() => {
+                        setNutrition(false)
+                        setTracking(false)
+                      }}
+                    >
+                      <path d='M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z' />
+                    </svg>
                   </NavLink>
-                </ListItem>}
+                </ListItem>
+
+                      }
+               
                 <ListItem>
                   <NavLink to='/contact_us' title='Contact Us'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" style={{color:"gray"}} fill="currentColor" class="bi bi-headset" viewBox="0 0 16 16" onClick={() => {
@@ -198,6 +214,7 @@ const App = () => {
                     <NavLink to='/registration'>Registration</NavLink>
                     <NavLink to='/users'>Users</NavLink>
                     <NavLink to='/contact_us'>Contact US</NavLink>
+                    <NavLink to='/All_users'>Users</NavLink>
                   </ReactNav>
                 </Navbar.Collapse>
               </ReactContainer>
@@ -237,7 +254,7 @@ const App = () => {
                   <Route path='/admin' exact element={<Admin />} />
                   <Route path='/users' exact element={<Users />} />
                   <Route path='/contact_us' exact element={<ContactUs />} />
-                  
+                    <Route path='/all_users' exact element={<AllUser />} />
                   <Route path='*' element={<Navigate to='/profile' />} />
                 </>
               ) : (

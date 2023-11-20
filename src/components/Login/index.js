@@ -154,6 +154,7 @@ function Admin(){
         if (response?.data?.Status === 200) {
           console.log('Response:', response);
           localStorage.setItem("token", response.data.Data.Token);
+          localStorage.setItem("role",response?.data?.Data?.Role)
           window.location.reload();
         } else {
           alert(response?.data?.message);
