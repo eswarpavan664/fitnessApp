@@ -38,6 +38,7 @@ const Login = () => {
       .then(response => {
         if (response?.data?.Status === 200) {
           console.log('Response:', response);
+        
           localStorage.setItem("token", response.data.Data.Token);
           window.location.reload();
         } else {
@@ -153,9 +154,11 @@ function Admin(){
       .then(response => {
         if (response?.data?.Status === 200) {
           console.log('Response:', response);
+     
           localStorage.setItem("token", response.data.Data.Token);
           localStorage.setItem("role",response?.data?.Data?.Role)
-          window.location.reload();
+         window.location.reload();
+            
         } else {
           alert(response?.data?.message);
         }
@@ -173,6 +176,7 @@ function Admin(){
     localStorage.setItem("token", access_token);
     if (localStorage.getItem('token') !== "null" && localStorage.getItem('token') !== null) {
       reloader();
+        
     }
   }, []);
 

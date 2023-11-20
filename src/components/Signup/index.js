@@ -46,6 +46,7 @@ const Signup = () => {
 
       axios.post(apiUrl, postData)
         .then(response => {
+             
           console.log('Response:', response.data);
           setChange(false)
         })

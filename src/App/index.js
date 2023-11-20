@@ -242,7 +242,7 @@ const App = () => {
 
               {token ? (
                 <>
-                  <Route path='/' element={<Navigate to='/profile' />} />
+                  <Route path='/' element={<Navigate to='/' />} />
                   <Route path='/profile' exact element={<Profile />} />
                   <Route path='/track-your-page' exact element={<GoalSetting />} />
                   <Route path='/workouts' exact element={<Workouts />} />
@@ -257,7 +257,7 @@ const App = () => {
                   <Route path='/users' exact element={<Users />} />
                   <Route path='/contact_us' exact element={<ContactUs />} />
                     <Route path='/all_users' exact element={<AllUser />} />
-                  <Route path='*' element={<Navigate to='/profile' />} />
+                  {localStorage.getItem("role")=="ADMIN"? <Route path='*' element={<Navigate to='/all_users' />} />: <Route path='*' element={<Navigate to='/profile' />} />}
                 </>
               ) : (
                 <>
