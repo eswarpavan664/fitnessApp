@@ -101,6 +101,13 @@ const Profile = () => {
         .then(response => {
           // console.log('Response:', response.data);
           setData(response?.data?.Data);
+          setFirstName(response?.data?.Data?.FirstName)
+          setLastName(response?.data?.Data?.LastName)
+          setEmail(response?.data?.Data?.email)
+          setAge(response?.data?.Data?.email || "")
+          setGender(response?.data?.Data?.Gender || "")
+          setCountry(response?.data?.Data?.Country || "")
+          setCity(response?.data?.Data?.City || "")
         })
         .catch(error => {
           console.error('Error:', error);
@@ -176,8 +183,8 @@ const Profile = () => {
                 {
                   toggle ?
                     <div>
-                      <label>First Name</label>
-                      <h2>{data?.FirstName}</h2>
+                      <label  >First Name</label>
+                      <h1>{data?.FirstName}</h1>
                     </div>
                     : <FormField>
                       <label>First Name:</label>
@@ -352,7 +359,7 @@ const Profile = () => {
                   </div>
                   <div className='col-md-6'>
                     {asia ? <FormField>
-                      <label>Weight (In LB):</label>
+                      <label>Weight (lb):</label>
 
                       <Input
                         type='number'
@@ -361,7 +368,7 @@ const Profile = () => {
                         onChange={(e) => setWeight(e.target.value)}
                       />
                     </FormField> : <FormField>
-                      <label>Weight (Kilograms):</label>
+                      <label>Weight (kilograms):</label>
 
                       <Input
                         type='number'
@@ -440,7 +447,7 @@ const Profile = () => {
                 )}
               </BmiGuage>
             </div>
-            <div className='col-md-6 px-5'>
+            {/* <div className='col-md-6 px-5'>
               <h2 className='mb-5'>My weight goal</h2>
               <from>
                 <div className='row align-items-center'>
@@ -486,7 +493,7 @@ const Profile = () => {
                 </div>
               </from>
 
-            </div>
+            </div> */}
           </div>
         </div>
 
