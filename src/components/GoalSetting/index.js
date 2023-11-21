@@ -18,7 +18,7 @@ const GoalSetting = () => {
     "Chest",
     "Back",
     "Full Body",
-    "Rest",
+    
     "Cardio",
     "Olympic",
     "Stretches"
@@ -197,7 +197,7 @@ const GoalSetting = () => {
       const token = localStorage.getItem('token');
       const [header, payload, signature] = token.split('.');
       const decodedPayload = JSON.parse(atob(payload));
-      const apiUrl = 'http://localhost:5000/user/track/create';
+      const apiUrl = 'https://fitness-server-wwif.onrender.com/user/track/create';
       const postData = {
         email: decodedPayload?.email,
         date: date,
@@ -230,7 +230,7 @@ const GoalSetting = () => {
     const token = localStorage.getItem('token');
     const [header, payload, signature] = token.split('.');
     const decodedPayload = JSON.parse(atob(payload));
-    const apiUrl = `http://localhost:5000/user/track/get/${decodedPayload?.email}`;
+    const apiUrl = `https://fitness-server-wwif.onrender.com/user/track/get/${decodedPayload?.email}`;
 
     axios.get(apiUrl)
       .then(response => {
@@ -326,7 +326,7 @@ const GoalSetting = () => {
                       </div>
 
                       <div className="col-12">
-                        <input type="number" placeholder="Sleep time (min)" className="form-control" value={sleep} onChange={(e) => setSleep(e.target.value)} />
+                        <input type="number" placeholder="Sleep time (hours)" className="form-control" value={sleep} onChange={(e) => setSleep(e.target.value)} />
                       </div>
                     </div>
                   </div>
@@ -354,9 +354,9 @@ const GoalSetting = () => {
                 <th>Exercise</th>
                 <th>Reps</th>
                 <th>Sets</th>
-                <th>Sleep Time (in mins)</th>
+                <th>Sleep Time (hours)</th>
                 <th>Steps</th>
-                <th>Water Intake (in ltrs)</th>
+                <th>Water Intake (ltrs)</th>
               </tr>
             </thead>
             <tbody>

@@ -7,7 +7,7 @@ function Users() {
   useEffect(()=>{
     try{
 
-      const apiUrl = `http://localhost:5000/user/get_all_users`;
+      const apiUrl = `https://fitness-server-wwif.onrender.com/user/get_all_users`;
 
       axios.get(apiUrl)
         .then(response => {

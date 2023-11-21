@@ -29,7 +29,7 @@ const Profile = () => {
   const [height, setHeight] = useState(null);
   const [weight, setWeight] = useState(null);
   const [age, setAge] = useState(null);
-  const [gender, setGender] = useState(null);
+  const [gender, setGender] = useState("male");
   const [diet, setDiet] = useState('lowfat');
   const [bmi, setBmi] = useState(null);
   const [country, setCountry] = useState(null)
@@ -95,12 +95,19 @@ const Profile = () => {
     if (token) {
       const [header, payload, signature] = token.split('.');
       const decodedPayload = JSON.parse(atob(payload));
-      const apiUrl = `http://localhost:5000/user/get_user/${decodedPayload?.Id}`;
+      const apiUrl = `https://fitness-server-wwif.onrender.com/user/get_user/${decodedPayload?.Id}`;
 
       axios.get(apiUrl)
         .then(response => {
           // console.log('Response:', response.data);
           setData(response?.data?.Data);
+          setFirstName(response?.data?.Data?.FirstName)
+          setLastName(response?.data?.Data?.LastName)
+          setEmail(response?.data?.Data?.email)
+          setAge(response?.data?.Data?.email || "")
+          setGender(response?.data?.Data?.Gender || "")
+          setCountry(response?.data?.Data?.Country || "")
+          setCity(response?.data?.Data?.City || "")
         })
         .catch(error => {
           console.error('Error:', error);
@@ -117,10 +124,10 @@ const Profile = () => {
   }
 
   const updateUserDetails = (e) => {
-    const apiUrl = `http://localhost:5000/user/update_user/${data?.Id}`;
+    const apiUrl = `https://fitness-server-wwif.onrender.com/user/update_user/${data?.Id}`;
     const postData = {
-      FirstName: firstName || data?.first_name,
-      LastName: lastName || data?.last_name,
+      FirstName: firstName || data?.FirstName,
+      LastName: lastName || data?.FirstName,
       Country: country || data?.country,
       City: city || data?.city,
       email: email || data?.email,
@@ -130,11 +137,12 @@ const Profile = () => {
     axios.put(apiUrl, postData)
       .then(response => {
         console.log('Response:', response.data);
+         window.location.reload()
       })
       .catch(error => {
         console.error('Error:', error);
       });
-    window.location.reload()
+   // 
   }
 
   console.log(data)
@@ -152,7 +160,7 @@ const Profile = () => {
         </Details>
 
         <div className=' mb-5'>
-          <form>
+        
             <div className='row border py-3 rounded' >
               <div style={{ display: otpToggle?"none":"flex", justifyContent: "space-between" }}>
                 <h4 ><span style={{display:otpToggle?"none":""}}>Your Details</span></h4>
@@ -167,10 +175,7 @@ const Profile = () => {
                         setToggle(!toggle)
                         setOtpToggle(false)
                         }} >Cancel</button>
-                      <button style={{ background: "lightgreen", padding: "5px 20px", border: "none", borderRadius: "10px", fontSize: "16px", boxShadow: "0 0 5px lightgray", color: "gray" }} onClick={(e) => {
-                        e.preventDefault()
-                        otpToggleHandler()
-                      }} >Save</button>
+                      <button style={{ background: "lightgreen", padding: "5px 20px", border: "none", borderRadius: "10px", fontSize: "16px", boxShadow: "0 0 5px lightgray", color: "gray" }} onClick={updateUserDetails}>Save</button>
                     </div>
                 }
               </div>
@@ -178,8 +183,8 @@ const Profile = () => {
                 {
                   toggle ?
                     <div>
-                      <label>First Name</label>
-                      <h2>{data?.FirstName}</h2>
+                      <label  >First Name</label>
+                      <h1>{data?.FirstName}</h1>
                     </div>
                     : <FormField>
                       <label>First Name:</label>
@@ -289,7 +294,7 @@ const Profile = () => {
                 }
 
               </div>
-              <div className='col-12'>
+              {/* <div className='col-12'>
               {otpToggle && <div className='row justify-content-center align-items-center'>
                   <div className='col-3'>
                    <div>
@@ -309,10 +314,10 @@ const Profile = () => {
                   </div>
                 </div>}
 
-              </div>
+              </div> */}
 
             </div>
-          </form>
+      
 
 
 
@@ -354,7 +359,7 @@ const Profile = () => {
                   </div>
                   <div className='col-md-6'>
                     {asia ? <FormField>
-                      <label>Weight (In LB):</label>
+                      <label>Weight (lb):</label>
 
                       <Input
                         type='number'
@@ -363,7 +368,7 @@ const Profile = () => {
                         onChange={(e) => setWeight(e.target.value)}
                       />
                     </FormField> : <FormField>
-                      <label>Weight (Kilograms):</label>
+                      <label>Weight (kilograms):</label>
 
                       <Input
                         type='number'
@@ -442,7 +447,7 @@ const Profile = () => {
                 )}
               </BmiGuage>
             </div>
-            <div className='col-md-6 px-5'>
+            {/* <div className='col-md-6 px-5'>
               <h2 className='mb-5'>My weight goal</h2>
               <from>
                 <div className='row align-items-center'>
@@ -488,7 +493,7 @@ const Profile = () => {
                 </div>
               </from>
 
-            </div>
+            </div> */}
           </div>
         </div>
 

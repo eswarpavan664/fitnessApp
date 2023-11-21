@@ -5,15 +5,18 @@ import three from "assets/three.png"
 import bg from "assets/nutition.jpg"
 function Nutrition() {
 
-  const redirectToWebsiteOne = () => {
-    window.location.href = 'https://www.eatingwell.com/article/291347/simple-30-day-weight-loss-meal-plan-1200-calories/';
-  };
-  const redirectToWebsiteTwo = () => {
-    window.location.href = 'https://www.eatingwell.com/article/287714/7-day-diet-meal-plan-to-lose-weight-1500-calories/';
-  };
-  const redirectToWebsiteThree = () => {
-    window.location.href = 'https://www.eatingwell.com/article/2060706/healthy-weight-gain-meal-plan/';
-  };
+const redirectToWebsiteOne = () => {
+  window.open('https://www.eatingwell.com/article/291347/simple-30-day-weight-loss-meal-plan-1200-calories/', '_blank');
+};
+
+const redirectToWebsiteTwo = () => {
+  window.open('https://www.eatingwell.com/article/287714/7-day-diet-meal-plan-to-lose-weight-1500-calories/', '_blank');
+};
+
+const redirectToWebsiteThree = () => {
+  window.open('https://www.eatingwell.com/article/2060706/healthy-weight-gain-meal-plan/', '_blank');
+};
+
   return (
     <div>
       <div className='container-fluid p-3'>

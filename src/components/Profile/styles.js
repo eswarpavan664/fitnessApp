@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import bg from 'assets/PROFILE_BG.jpg';
+import bg from 'assets/profile1.jpeg';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -129,10 +129,11 @@ export const Header = styled.div`
   // box-shadow: 0 0 10px white;
   text-shadow: 0 0 30px black;
   font-weight: bold;
-  top: 21rem;
+  top: 16rem;
   left: 5rem;
   opacity: 1;
   text-transform: uppercase;
+  
 `;
 
 export const Picture = styled.div`

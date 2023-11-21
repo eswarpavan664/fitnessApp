@@ -5,7 +5,8 @@ import "./style.css"
 const Registration = () => {
 
   const redirectToWebsiteThree = () => {
-    window.location.href = 'https://allevents.in/new%20york';
+    window.open('https://allevents.in/new%20yorkn/', '_blank');
+    
   };
 
   return (

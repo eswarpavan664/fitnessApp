@@ -35,16 +35,18 @@ const Signup = () => {
     if (password !== confirmPassword) {
       alert('Not matching password and confirm password');
     } else {
-      const apiUrl = 'http://localhost:5000/user/signup';
+      const apiUrl = 'https://fitness-server-wwif.onrender.com/user/signup';
       const postData = {
         FirstName: firstName,
         LastName: lastName,
         email: email,
         password: password,
+        Role:"USER"
       };
 
       axios.post(apiUrl, postData)
         .then(response => {
+             
           console.log('Response:', response.data);
           setChange(false)
         })
