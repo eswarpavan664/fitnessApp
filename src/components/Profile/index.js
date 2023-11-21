@@ -342,18 +342,18 @@ const Profile = () => {
                     {asia ? <FormField>
                       <label>Height (feet):</label>
                       <Input
-                        type='number'
+                        type='text'
                         placeholder='Height'
                         value={height}
-                        onChange={(e) => setHeight(e.target.value)}
+                        onChange={(e) => setHeight(parseInt(e.target.value))}
                       />
                     </FormField> : <FormField>
                       <label>Height (centimeters):</label>
                       <Input
-                        type='number'
+                        type='text'
                         placeholder='Height'
                         value={height}
-                        onChange={(e) => setHeight(e.target.value)}
+                        onChange={(e) => setHeight(parseInt(e.target.value))}
                       />
                     </FormField>}
                   </div>
@@ -362,19 +362,19 @@ const Profile = () => {
                       <label>Weight (lb):</label>
 
                       <Input
-                        type='number'
+                        type='text'
                         placeholder='Weight'
                         value={weight}
-                        onChange={(e) => setWeight(e.target.value)}
+                        onChange={(e) => setWeight(parseInt(e.target.value))}
                       />
                     </FormField> : <FormField>
                       <label>Weight (kilograms):</label>
 
                       <Input
-                        type='number'
+                        type='text'
                         placeholder='Weight'
                         value={weight}
-                        onChange={(e) => setWeight(e.target.value)}
+                        onChange={(e) => setWeight(parseInt(e.target.value))}
                       />
                     </FormField>}
                   </div>
@@ -383,10 +383,10 @@ const Profile = () => {
                       <label>Age:</label>
 
                       <Input
-                        type='number'
+                        type='text'
                         placeholder='Age'
                         value={age}
-                        onChange={(e) => setAge(e.target.value)}
+                        onChange={(e) => setAge(parseInt(e.target.value))}
                       />
                     </FormField>
                   </div>
