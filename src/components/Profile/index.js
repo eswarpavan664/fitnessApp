@@ -43,7 +43,7 @@ const Profile = () => {
   const [otpToggle, setOtpToggle] = useState(false)
 
   const calculateBmi = useCallback(async()  => {
-
+   // console.log(weight,height,age)
     if (weight && height) {
       const weightMultiplier = asia ? 0.453592 : 1; // 1 lb = 0.453592 kg
       const heightMultiplier = asia ? 0.3048 : 0.01; // 1 ft = 0.3048 meters, 1 cm = 0.01 meters
@@ -56,7 +56,7 @@ const Profile = () => {
       
       await setLocalValueByKey('bmi_data',bmiValue)
     } else {
-      setBmi(null);
+      alert("all fields are required...")
     }
   }, [height, weight]);
 
