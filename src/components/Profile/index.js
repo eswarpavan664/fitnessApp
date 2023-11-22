@@ -21,6 +21,7 @@ import {
 } from './styles';
 import "./style.css"
 import axios from 'axios';
+import { getLocalValueByKey, setLocalValueByKey } from 'components/GetLocalData';
 
 const Profile = () => {
   const [firstName, setFirstName] = useState(null);
@@ -28,7 +29,7 @@ const Profile = () => {
   const [email, setEmail] = useState(null);
   const [height, setHeight] = useState(null);
   const [weight, setWeight] = useState(null);
-  const [age, setAge] = useState(null);
+  const [age, setAge] = useState(0);
   const [gender, setGender] = useState("male");
   const [diet, setDiet] = useState('lowfat');
   const [bmi, setBmi] = useState(null);
@@ -41,7 +42,7 @@ const Profile = () => {
   const [otp, setOtp] = useState(null)
   const [otpToggle, setOtpToggle] = useState(false)
 
-  const calculateBmi = useCallback(() => {
+  const calculateBmi = useCallback(async()  => {
 
     if (weight && height) {
       const weightMultiplier = asia ? 0.453592 : 1; // 1 lb = 0.453592 kg
@@ -52,6 +53,8 @@ const Profile = () => {
 
       const bmiValue = (weightInKg / (heightInMeters * heightInMeters)).toFixed(2);
       setBmi(bmiValue);
+      
+      await setLocalValueByKey('bmi_data',bmiValue)
     } else {
       setBmi(null);
     }
@@ -90,13 +93,18 @@ const Profile = () => {
   }
 
 
+  const GetBmiData=async()=>{
+       let bmi =await getLocalValueByKey('bmi_data')
+      setBmi(bmi)
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       const [header, payload, signature] = token.split('.');
       const decodedPayload = JSON.parse(atob(payload));
       const apiUrl = `https://fitness-server-wwif.onrender.com/user/get_user/${decodedPayload?.Id}`;
-
+      GetBmiData()
       axios.get(apiUrl)
         .then(response => {
           // console.log('Response:', response.data);
@@ -104,7 +112,7 @@ const Profile = () => {
           setFirstName(response?.data?.Data?.FirstName)
           setLastName(response?.data?.Data?.LastName)
           setEmail(response?.data?.Data?.email)
-          setAge(response?.data?.Data?.email || "")
+        //  setAge(response?.data?.Data?.email || "")
           setGender(response?.data?.Data?.Gender || "")
           setCountry(response?.data?.Data?.Country || "")
           setCity(response?.data?.Data?.City || "")
