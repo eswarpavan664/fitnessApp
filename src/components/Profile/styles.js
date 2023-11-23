@@ -129,8 +129,8 @@ export const Header = styled.div`
   // box-shadow: 0 0 10px white;
   text-shadow: 0 0 30px black;
   font-weight: bold;
-  top: 16rem;
-  left: 5rem;
+  top: 23rem;
+  left: 4rem;
   opacity: 1;
   text-transform: uppercase;
   
@@ -143,7 +143,7 @@ export const Picture = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 35vh
+  height: 43vh
 `;
 
 export const BmiGuage = styled.div`

@@ -201,7 +201,7 @@ const Workout = () => {
 
           <div class="soft-ui-container">
             <div style={{display:"flex", alignItems:"center"}}>
-              <div class="dropdown-container">
+              {/* <div class="dropdown-container">
                 <label class="form-label" for="dayDropdown">Select Day:</label>
                 <select class="form-select" id="dayDropdown" value={selectedDay} onChange={handleDayChange}>
                   {days.map((day) => (
@@ -210,7 +210,7 @@ const Workout = () => {
                     </option>
                   ))}
                 </select>
-              </div>
+              </div> */}
 
               <div class="dropdown-container">
                 <label class="form-label" for="categoryDropdown">Select Category:</label>

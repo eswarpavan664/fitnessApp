@@ -48,7 +48,7 @@ export const Picture = styled.div`
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 30rem;
+  height: 43vh;
 `;
 
 export const Body = styled.div``;

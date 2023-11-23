@@ -24,36 +24,53 @@ import axios from 'axios';
 import { getLocalValueByKey, setLocalValueByKey } from 'components/GetLocalData';
 
 const Profile = () => {
-  const [firstName, setFirstName] = useState(null);
-  const [lastName, setLastName] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [height, setHeight] = useState(null);
-  const [weight, setWeight] = useState(null);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("male");
   const [diet, setDiet] = useState('lowfat');
-  const [bmi, setBmi] = useState(null);
-  const [country, setCountry] = useState(null)
-  const [city, setCity] = useState(null)
+  const [bmi, setBmi] = useState("");
+  const [country, setCountry] = useState("")
+  const [city, setCity] = useState("")
   const [toggle, setToggle] = useState(true)
-  const [data, setData] = useState(null)
+  const [data, setData] = useState("")
   const [asia, setAsia] = useState(true)
-  const [calories, setCalories] = useState(null)
-  const [otp, setOtp] = useState(null)
+  const [calories, setCalories] = useState("")
+  const [otp, setOtp] = useState("")
   const [otpToggle, setOtpToggle] = useState(false)
-
+  const [bmi_colour,setbmi_colour]=useState("")
   const calculateBmi = useCallback(async()  => {
-   // console.log(weight,height,age)
+   // console.log(weight,height,age)'#ff5722'
     if (weight && height) {
       const weightMultiplier = asia ? 0.453592 : 1; // 1 lb = 0.453592 kg
       const heightMultiplier = asia ? 0.3048 : 0.01; // 1 ft = 0.3048 meters, 1 cm = 0.01 meters
 
-      const weightInKg = weight * weightMultiplier;
-      const heightInMeters = height * heightMultiplier;
+      const weightInKg = parseInt(weight) * weightMultiplier;
+      const heightInMeters = parseFloat(height) * heightMultiplier;
 
       const bmiValue = (weightInKg / (heightInMeters * heightInMeters)).toFixed(2);
       setBmi(bmiValue);
-      
+      let color=""
+      if(bmiValue<=18.5){
+        setbmi_colour("orange")
+        color="orange"
+        
+      }else if(bmiValue>=18.6 && bmiValue<=24.9){
+        setbmi_colour("green")
+           color="green"
+
+      }else if(bmiValue>=25 &&bmiValue<=29.9){
+         setbmi_colour("red")
+            color="red"
+      }else{
+         setbmi_colour("red")
+            color="red"
+      }
+ 
+      await setLocalValueByKey('bmi_color',color)
       await setLocalValueByKey('bmi_data',bmiValue)
     } else {
       alert("all fields are required...")
@@ -95,7 +112,9 @@ const Profile = () => {
 
   const GetBmiData=async()=>{
        let bmi =await getLocalValueByKey('bmi_data')
+        let bmi_color =await getLocalValueByKey('bmi_color')
       setBmi(bmi)
+      setbmi_colour(bmi_color)
   }
 
   useEffect(() => {
@@ -353,7 +372,7 @@ const Profile = () => {
                         type='text'
                         placeholder='Height'
                         value={height}
-                        onChange={(e) => setHeight(parseInt(e.target.value))}
+                        onChange={(e) => setHeight(e.target.value)}
                       />
                     </FormField> : <FormField>
                       <label>Height (centimeters):</label>
@@ -361,7 +380,7 @@ const Profile = () => {
                         type='text'
                         placeholder='Height'
                         value={height}
-                        onChange={(e) => setHeight(parseInt(e.target.value))}
+                        onChange={(e) => setHeight(e.target.value)}
                       />
                     </FormField>}
                   </div>
@@ -373,7 +392,7 @@ const Profile = () => {
                         type='text'
                         placeholder='Weight'
                         value={weight}
-                        onChange={(e) => setWeight(parseInt(e.target.value))}
+                        onChange={(e) => setWeight(e.target.value)}
                       />
                     </FormField> : <FormField>
                       <label>Weight (kilograms):</label>
@@ -382,7 +401,7 @@ const Profile = () => {
                         type='text'
                         placeholder='Weight'
                         value={weight}
-                        onChange={(e) => setWeight(parseInt(e.target.value))}
+                        onChange={(e) => setWeight(e.target.value)}
                       />
                     </FormField>}
                   </div>
@@ -394,7 +413,7 @@ const Profile = () => {
                         type='text'
                         placeholder='Age'
                         value={age}
-                        onChange={(e) => setAge(parseInt(e.target.value))}
+                        onChange={(e) => setAge(e.target.value)}
                       />
                     </FormField>
                   </div>
@@ -440,7 +459,7 @@ const Profile = () => {
                         cx='100'
                         cy='100'
                         r='90'
-                        stroke='#ff5722'
+                        stroke={bmi_colour}
                         strokeWidth='20'
                         fill='none'
                         strokeDasharray={`${bmi * 9.42}, 565.48`}
