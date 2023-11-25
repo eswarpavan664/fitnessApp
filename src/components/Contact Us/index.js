@@ -6,33 +6,51 @@ function ContactUs() {
     const [message, setMessage] = useState(null)
 
 
-      const SendEmail = () => {
-      
+    const SendEmail = () => {
 
-           
-            
+        if (subject && message) {
+            //     const apiUrl = 'https://fitness-server-wwif.onrender.com/send_email';
+            // const postData = {
+            //     subject: subject,
+            //     message:message
+            // };
 
-         if(subject && message){
-                const apiUrl = 'https://fitness-server-wwif.onrender.com/send_email';
+            // axios.post(apiUrl, postData)
+            //     .then(response => {
+            //         alert("your response was successfully sent...")
+            //         setSubject("")
+            //         setMessage("")
+            //         console.log('Response:',  JSON.stringify(response));
+            //     })
+            //     .catch(error => {
+            //         console.error('Error:', error);
+            //     });
+
+            const token = localStorage.getItem('token');
+            const [header, payload, signature] = token.split('.');
+            const decodedPayload = JSON.parse(atob(payload));
+
+            const apiurl = "https://fitness-server-wwif.onrender.com/user/contact_us/create"
             const postData = {
                 subject: subject,
-                message:message
-            };
+                message: message,
+                created_by: decodedPayload?.Id
+            }
+            axios.post(apiurl, postData)
+            .then(response =>{
+                alert("Your query have sent successfully")
+                setSubject("")
+                setMessage("")
+                console.log("Query Response", response)
+            })
+            .catch(err=>{
+                console.log("Error occured : ", err)
+            })
 
-            axios.post(apiUrl, postData)
-                .then(response => {
-                    alert("your response was successfully sent...")
-                    setSubject("")
-                    setMessage("")
-                    console.log('Response:',  JSON.stringify(response));
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-      
-         }else{
+        } else {
             alert("all are required fields...")
-         }
+        }
+
     }
 
 

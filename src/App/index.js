@@ -45,6 +45,8 @@ import Users from 'components/Users';
 import ContactUs from 'components/Contact Us';
 import ForgetPassword from 'components/ForgetPassword';
 import AllUser from 'components/AllUser';
+import Queries from 'components/Queries';
+import ViewQuery from 'components/ViewQuery';
 
 const NotFound = () => <h2>404 - Page not found</h2>;
 
@@ -54,8 +56,8 @@ const App = () => {
   const [isTracking, setTracking] = useState(false)
 
   let access_token = localStorage.getItem('token')
-  const payload = access_token?.split('.')?.[1] ?? "" ;
-  const decodedPayload = JSON.parse( payload ? atob(payload) : "{}");
+  const payload = access_token?.split('.')?.[1] ?? "";
+  const decodedPayload = JSON.parse(payload ? atob(payload) : "{}");
 
   let is_admin = localStorage.getItem("role")
 
@@ -81,120 +83,135 @@ const App = () => {
                 alt=''
               ></img>
               <UndorderList>
-                 
-                      {is_admin!="ADMIN"?
 
-                        <>
-                        <ListItem>
-                  <NavLink to='/profile' title='Profile'>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      height='2rem'
-                      viewBox='0 0 448 512'
-                      fill='#808080'
-                      onClick={() => {
-                        setNutrition(false)
-                        setTracking(false)
-                      }}
-                    >
-                      <path d='M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z' />
-                    </svg>
-                  </NavLink>
-                </ListItem>
-                            <ListItem>
-                  <NavLink to='/workouts' title='Workouts'>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      height='1.8rem'
-                      viewBox='0 0 640 512'
-                      fill='#808080'
-                      onClick={() => {
-                        setNutrition(false)
-                        setTracking(false)
-                      }}
-                    >
-                      <path d='M96 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V224v64V448c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32H96V64zm448 0v64h32c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H544v64c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z' />
-                    </svg>
-                  </NavLink>
-                </ListItem>
-                <ListItem>
-                  <NavLink to='/nutrition' title='Nutrition'>
-                    <img src={nutrition} width={"25"} style={{ filter: !isNutirtion ? 'grayscale(100%)' : "" }} onClick={() => {
-                      setNutrition(true)
-                      setTracking(false)
-                    }} />
-                  </NavLink>
-                </ListItem>
-                <ListItem>
-                  <NavLink to='/track-your-page' title='Track Your Progress'>
-                    <img src={Tracking} onClick={() => {
-                      setNutrition(false)
-                      setTracking(true)
-                    }} width={"25"} style={{ filter: !isTracking ? 'grayscale(100%)' : "" }} />
-                  </NavLink>
-                </ListItem>
-                <ListItem>
-                  <NavLink to='/dashboard' title='Dashboard'>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      height='2rem'
-                      viewBox='0 0 512 512'
-                      fill='#808080'
-                      onClick={() => {
-                        setNutrition(false)
-                        setTracking(false)
-                      }}
-                    >
-                      <path d='M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm320 96c0-26.9-16.5-49.9-40-59.3V88c0-13.3-10.7-24-24-24s-24 10.7-24 24V292.7c-23.5 9.5-40 32.5-40 59.3c0 35.3 28.7 64 64 64s64-28.7 64-64zM144 176a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm-16 80a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM400 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z' />
-                    </svg>
-                  </NavLink>
-                </ListItem>
+                {is_admin != "ADMIN" ?
 
-
-                <ListItem>
-                  <NavLink to='/events' fill='#6cc51d' title='Events'>
-
-                    <img src={sport} width={"25"} onClick={() => {
-                      setNutrition(false)
-                      setTracking(false)
-                    }} />
-                  </NavLink>
-                </ListItem>
-
-                 <ListItem>
-                  <NavLink to='/contact_us' title='Contact Us'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" style={{color:"gray"}} fill="currentColor" class="bi bi-headset" viewBox="0 0 16 16" onClick={() => {
-                      setNutrition(false)
-                      setTracking(false)
-                    }}>
-                      <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5z" />
-                    </svg>
-
-                  </NavLink>
-                </ListItem>
-                        </>:
+                  <>
+                    <ListItem>
+                      <NavLink to='/profile' title='Profile'>
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          height='2rem'
+                          viewBox='0 0 448 512'
+                          fill='#808080'
+                          onClick={() => {
+                            setNutrition(false)
+                            setTracking(false)
+                          }}
+                        >
+                          <path d='M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z' />
+                        </svg>
+                      </NavLink>
+                    </ListItem>
+                    <ListItem>
+                      <NavLink to='/workouts' title='Workouts'>
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          height='1.8rem'
+                          viewBox='0 0 640 512'
+                          fill='#808080'
+                          onClick={() => {
+                            setNutrition(false)
+                            setTracking(false)
+                          }}
+                        >
+                          <path d='M96 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V224v64V448c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32H96V64zm448 0v64h32c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H544v64c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z' />
+                        </svg>
+                      </NavLink>
+                    </ListItem>
+                    <ListItem>
+                      <NavLink to='/nutrition' title='Nutrition'>
+                        <img src={nutrition} width={"25"} style={{ filter: !isNutirtion ? 'grayscale(100%)' : "" }} onClick={() => {
+                          setNutrition(true)
+                          setTracking(false)
+                        }} />
+                      </NavLink>
+                    </ListItem>
+                    <ListItem>
+                      <NavLink to='/track-your-page' title='Track Your Progress'>
+                        <img src={Tracking} onClick={() => {
+                          setNutrition(false)
+                          setTracking(true)
+                        }} width={"25"} style={{ filter: !isTracking ? 'grayscale(100%)' : "" }} />
+                      </NavLink>
+                    </ListItem>
+                    <ListItem>
+                      <NavLink to='/dashboard' title='Dashboard'>
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          height='2rem'
+                          viewBox='0 0 512 512'
+                          fill='#808080'
+                          onClick={() => {
+                            setNutrition(false)
+                            setTracking(false)
+                          }}
+                        >
+                          <path d='M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm320 96c0-26.9-16.5-49.9-40-59.3V88c0-13.3-10.7-24-24-24s-24 10.7-24 24V292.7c-23.5 9.5-40 32.5-40 59.3c0 35.3 28.7 64 64 64s64-28.7 64-64zM144 176a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm-16 80a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM400 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z' />
+                        </svg>
+                      </NavLink>
+                    </ListItem>
 
 
-                        <ListItem>
-                  <NavLink to='/all_users' title='Profile'>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      height='2rem'
-                      viewBox='0 0 448 512'
-                      fill='#808080'
-                      onClick={() => {
-                        setNutrition(false)
-                        setTracking(false)
-                      }}
-                    >
-                      <path d='M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z' />
-                    </svg>
-                  </NavLink>
-                </ListItem>
+                    <ListItem>
+                      <NavLink to='/events' fill='#6cc51d' title='Events'>
 
-                      }
-               
-                
+                        <img src={sport} width={"25"} onClick={() => {
+                          setNutrition(false)
+                          setTracking(false)
+                        }} />
+                      </NavLink>
+                    </ListItem>
+
+                    <ListItem>
+                      <NavLink to='/contact_us' title='Contact Us'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" style={{ color: "gray" }} fill="currentColor" class="bi bi-headset" viewBox="0 0 16 16" onClick={() => {
+                          setNutrition(false)
+                          setTracking(false)
+                        }}>
+                          <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5z" />
+                        </svg>
+
+                      </NavLink>
+                    </ListItem>
+                  </> :
+
+                  <>
+                    <ListItem>
+                      <NavLink to='/all_users' title='Profile'>
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          height='2rem'
+                          viewBox='0 0 448 512'
+                          fill='#808080'
+                          onClick={() => {
+                            setNutrition(false)
+                            setTracking(false)
+                          }}
+                        >
+                          <path d='M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z' />
+                        </svg>
+                      </NavLink>
+                    </ListItem>
+
+                    <ListItem>
+                      <NavLink to='/queries' title='Queries'>
+                        <div style={{position:"relative"}}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill='#808080' class="bi bi-bell-fill" viewBox="0 0 16 16">
+                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                          </svg>
+                          <div className='' style={{height:"8px", width:"8px", background:"red", position:"absolute", top:"0", right:"0", borderRadius:"50%"}}></div>
+                        </div>
+                      </NavLink>
+                    </ListItem>
+                  </>
+
+
+
+
+                }
+
+
               </UndorderList>
             </Nav>
           </LeftSide>
@@ -256,8 +273,18 @@ const App = () => {
                   <Route path='/admin' exact element={<Admin />} />
                   <Route path='/users' exact element={<Users />} />
                   <Route path='/contact_us' exact element={<ContactUs />} />
-                    <Route path='/all_users' exact element={<AllUser />} />
-                  {localStorage.getItem("role")=="ADMIN"? <Route path='*' element={<Navigate to='/all_users' />} />: <Route path='*' element={<Navigate to='/profile' />} />}
+                  <Route path='/all_users' exact element={<AllUser />} />
+                  <Route path="/queries" exact element={<Queries />} />
+                  <Route path="/queries/:id" exact element={<ViewQuery />}  />
+                  {localStorage.getItem("role") == "ADMIN" ? (
+                   <>
+                     {/* <Route path='/queries' element={<Navigate to='/queries' />} />
+                    <Route path='/all_users' element={<Navigate to='/all_users' />} /> */}
+                    <Route path='*' element={<Navigate to='/all_users' />} />
+
+
+                   </>
+                  ) : <Route path='*' element={<Navigate to='/profile' />} />}
                 </>
               ) : (
                 <>

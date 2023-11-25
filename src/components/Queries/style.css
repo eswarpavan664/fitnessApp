@@ -1,0 +1,7 @@
+.notification_record{
+    transition: 0.1s;
+}
+.notification_record:hover{
+    /* background-color: rgba(173, 216, 230, 0.3); */
+    box-shadow: 0 0 5px 0 rgba(0, 0, 255, 0.3);
+}
