@@ -125,10 +125,10 @@ function Queries() {
                       <p className='m-0 p-0 mt-4' style={{fontStyle:"italic", fontFamily:"sans-serif"}}>{item?.query?.createdAt.substring(0,10)}</p>
                     </div>
                     <div className='col-2 d-flex justify-content-evenly'>
-                    <Link to={`/queries/${item.query.id}`} className='w-100 me-1'>
+                    <Link to={`/queries/${item.query.uuid}`} className='w-100 me-1'>
                         <button className='btn btn-primary w-100'>View</button>
                       </Link>
-                      <button className='btn btn-secondary w-100 ms-1' onClick={()=>handleDelete(item?.query?.id)}>Delete</button>
+                      <button className='btn btn-secondary w-100 ms-1' onClick={()=>handleDelete(item?.query?.uuid)}>Delete</button>
                       
                     </div>
                   </div> }

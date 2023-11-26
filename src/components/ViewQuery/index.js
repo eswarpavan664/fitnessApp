@@ -7,12 +7,12 @@ import { Link, useParams } from 'react-router-dom';
 function ViewQuery() {
 
   const [data, setData] = useState(null)
-  const { id } = useParams()
+  const { uuid } = useParams()
 
   useEffect(() => {
     try {
 
-      const apiUrl = `https://fitness-server-wwif.onrender.com/admin/queries/${id}`;
+      const apiUrl = `https://fitness-server-wwif.onrender.com/admin/queries/${uuid}`;
 
       axios.get(apiUrl)
         .then(response => {
