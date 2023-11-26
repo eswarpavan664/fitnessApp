@@ -18,7 +18,7 @@ const GoalSetting = () => {
     "Chest",
     "Back",
     "Full Body",
-    
+
     "Cardio",
     "Olympic",
     "Stretches"
@@ -180,6 +180,8 @@ const GoalSetting = () => {
   const [sleep, setSleep] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const [selectedExercise, setSelectedExercise] = useState(exercises[selectedCategory][0]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
 
   const handleCategoryChange = (event) => {
     const newCategory = event.target.value;
@@ -214,6 +216,7 @@ const GoalSetting = () => {
       axios.post(apiUrl, postData)
         .then(response => {
           console.log('Response:', response.data);
+          setCurrentPage(1);
           window.location.reload()
         })
         .catch(error => {
@@ -227,10 +230,11 @@ const GoalSetting = () => {
   const [result, setResult] = useState([]);
 
   useEffect(() => {
+    console.log(perPage, "-", currentPage)
     const token = localStorage.getItem('token');
     const [header, payload, signature] = token.split('.');
     const decodedPayload = JSON.parse(atob(payload));
-    const apiUrl = `https://fitness-server-wwif.onrender.com/user/track/get/${decodedPayload?.email}`;
+    const apiUrl = `https://fitness-server-wwif.onrender.com/user/track/get/?email=${decodedPayload?.email}&page_no=${currentPage}&per_page=${perPage}`;
 
     axios.get(apiUrl)
       .then(response => {
@@ -240,9 +244,18 @@ const GoalSetting = () => {
       .catch(error => {
         console.error('Error:', error);
       });
-  }, []);
+  }, [currentPage, perPage]);
 
   console.log(result)
+
+  const goToPage = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handlePerPageChange = (event) => {
+    setPerPage(event.target.value);
+    setCurrentPage(1);
+  };
 
 
 
@@ -345,8 +358,8 @@ const GoalSetting = () => {
         </div>
 
 
-        <div className="table-container">
-          <table className="soft-ui-table">
+        <div className="table-container" >
+          <table className="soft-ui-table" >
             <thead>
               <tr>
                 <th>Date</th>
@@ -359,13 +372,54 @@ const GoalSetting = () => {
                 <th>Water Intake (ltrs)</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               {result.map((track, index) => (
                 <TrackTable key={index} track={track} />
               ))}
             </tbody>
           </table>
         </div>
+
+        <div className='m-5 px-5' style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+
+         
+          <div className="items-per-page" style={{display:"flex", alignItems:"center"}}>
+            <label htmlFor="perPageDropdown" className="form-label m-0 p-0 me-3">Items per page:</label>
+            <select
+              id="perPageDropdown"
+              className="form-select"
+              value={perPage}
+              onChange={handlePerPageChange}
+            >
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+
+          <div className="pagination-container">
+            <button
+              className="btn btn-secondary"
+              disabled={currentPage === 1}
+              onClick={() => goToPage(currentPage - 1)}
+            >
+              Previous
+            </button>
+            <span className="mx-2">Page {currentPage}</span>
+            <button
+              className="btn btn-secondary"
+              disabled={result.length < perPage}
+              onClick={() => goToPage(currentPage + 1)}
+            >
+              Next
+            </button>
+          </div>
+
+
+        </div>
+
+
 
 
 
