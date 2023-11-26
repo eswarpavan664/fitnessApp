@@ -275,7 +275,7 @@ const App = () => {
                   <Route path='/contact_us' exact element={<ContactUs />} />
                   <Route path='/all_users' exact element={<AllUser />} />
                   <Route path="/queries" exact element={<Queries />} />
-                  <Route path="/queries/:id" exact element={<ViewQuery />}  />
+                  <Route path="/queries/:uuid" exact element={<ViewQuery />}  />
                   {localStorage.getItem("role") == "ADMIN" ? (
                    <>
                      {/* <Route path='/queries' element={<Navigate to='/queries' />} />
