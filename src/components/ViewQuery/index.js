@@ -8,6 +8,8 @@ function ViewQuery() {
 
   const [data, setData] = useState(null)
   const { uuid } = useParams()
+  const [subject, setSubject] = useState(null)
+  const [message, setMessage] = useState(null)
 
   useEffect(() => {
     try {
@@ -39,6 +41,30 @@ function ViewQuery() {
     }
   }, [])
 
+  const handleSendReply = () =>{
+    try{
+
+      let apiurl_one = `https://fitness-server-wwif.onrender.com/admin/query/markasread/${uuid}`
+      let data = {
+        subject: subject,
+        message: message,
+        email: data?.[0]?.email
+      }
+      axios.post(apiurl_one, data)
+        .then(response => {
+          console.log('Response:', response.data);
+          // setData(response?.data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+
+
+    }catch(err){
+      console.log("Error while getting the user")
+    }
+  }
+
 
 
   console.log(data)
@@ -49,7 +75,7 @@ function ViewQuery() {
           <Link to="/queries">
             <button className='btn btn-primary'>Back</button>
           </Link>
-          <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" onClick={()=>handleSendReply()}>
             Reply
           </button>
 
@@ -73,10 +99,10 @@ function ViewQuery() {
             <div class="modal-body">
               <div className='row'>
                 <div className='col-12'>
-                <input className='w-100' placeholder='Subject'/>
+                <input className='w-100' placeholder='Subject' onChange={(e)=>setSubject(e.target.value)} />
                 </div>
                 <div className='col-12 mt-3 '>
-                <textarea className='w-100' rows={30} placeholder='message...'></textarea>
+                <textarea className='w-100' rows={30} placeholder='message...' onChange={(e)=>setMessage(e.target.value)} ></textarea>
                 </div>
               </div>
               
