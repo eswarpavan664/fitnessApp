@@ -44,16 +44,17 @@ function ViewQuery() {
   const handleSendReply = () =>{
     try{
 
-      let apiurl_one = `https://fitness-server-wwif.onrender.com/admin/query/markasread/${uuid}`
-      let data = {
+      let apiurl_one = `https://fitness-server-wwif.onrender.com/send_email`
+      let post_data = {
         subject: subject,
         message: message,
         email: data?.[0]?.email
       }
-      axios.post(apiurl_one, data)
+      axios.post(apiurl_one, post_data)
         .then(response => {
           console.log('Response:', response.data);
           // setData(response?.data);
+          window.location.reload()
         })
         .catch(error => {
           console.error('Error:', error);
@@ -61,7 +62,7 @@ function ViewQuery() {
 
 
     }catch(err){
-      console.log("Error while getting the user")
+      console.log("Error while getting the user", err)
     }
   }
 
@@ -73,25 +74,30 @@ function ViewQuery() {
       <div className="table-container">
         <div className='d-flex justify-content-between mx-5'>
           <Link to="/queries">
-            <button className='btn btn-primary'>Back</button>
+            <button className='btn btn-primary' style={{fontSize:"14px"}}>Back</button>
           </Link>
-          <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" onClick={()=>handleSendReply()}>
+          <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" style={{fontSize:"14px"}} >
             Reply
           </button>
-
-
         </div>
-        <div className='mt-5 ps-5 py-3' style={{ borderLeft: "3px solid gray" }}>
+        <div className='ps-5 my-5' style={{display:"block"}}>
+          <div>
+            <h4 style={{color:"gray", fontStyle:"italic", fontFamily:"sans-serif", letterSpacing:"1px"}}>{data?.[0]?.first_name + " "+ data?.[0]?.last_name}</h4>
+            <h4 style={{color:"gray", fontStyle:"italic", fontFamily:"sans-serif", letterSpacing:"1px"}}>{data?.[0]?.email}</h4>
+          </div>
+        </div>
+        <div className=' ps-5 py-3=' style={{ borderLeft: "3px solid gray" }}>
           <h1 className='fw-bold'>{data?.[0]?.query?.subject}</h1>
           <p className='mt-4' style={{ fontSize: "14px", textJustify:"auto" }}>{data?.[0]?.query?.message}</p>
         </div>
       </div>
 
+     
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title text-muted" id="exampleModalLabel">Reply to <span className='text-dark'>{data?.[0]?.email}</span></h5>
+              <h5 class="modal-title text-muted" id="exampleModalLabel">Reply to <span className='text-primary'>{data?.[0]?.email}</span></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -99,17 +105,17 @@ function ViewQuery() {
             <div class="modal-body">
               <div className='row'>
                 <div className='col-12'>
-                <input className='w-100' placeholder='Subject' onChange={(e)=>setSubject(e.target.value)} />
+                <input className='w-100 p-3 rounded' placeholder='Subject' onChange={(e)=>setSubject(e.target.value)} style={{fontWeight:"bold", fontSize:"14px", outline:"none", border:"1px solid gray"}} />
                 </div>
                 <div className='col-12 mt-3 '>
-                <textarea className='w-100' rows={30} placeholder='message...' onChange={(e)=>setMessage(e.target.value)} ></textarea>
+                <textarea className='w-100 rounded' rows={25} placeholder='message...' onChange={(e)=>setMessage(e.target.value)} style={{fontSize:"12px",  outline:"none", border:"1px solid gray"}}></textarea>
                 </div>
               </div>
               
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-primary" onClick={()=>handleSendReply()}>Send reply</button>
             </div>
           </div>
         </div>
