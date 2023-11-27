@@ -8,7 +8,7 @@ import {
 } from './styles';
 import axios from 'axios';
 import "./style.css"
-
+import bg from "assets/trackprogress.jpg"
 const GoalSetting = () => {
 
   const [categories, setCategories] = useState([
@@ -262,8 +262,7 @@ const GoalSetting = () => {
   return (
     <Wrapper>
       <GoalDetails className='p-0'>
-        <Header>Track your progress</Header>
-        <Picture></Picture>
+      <div className='bg-light m-3' style={{ height: "43vh", backgroundImage: `url(${bg})`, backgroundPosition: "center", position: "relative" }}><h2 style={{ position: "absolute", bottom: 10, left: 10, color: "white", textShadow: "0 0 10px black", fontSize: "36px" }}>TRACK YOUR PROGRESS</h2></div>
 
         <p className='mx-5 my-5' style={{ fontSize: "16px" }}>Welcome to the Track your Progress page, your key to achieving your fitness goals and celebrating your success! Consistency is the secret to lasting progress, and logging your daily activity is your roadmap to fitness triumph. Embrace the power of accountability and watch your journey unfold one day at a time. Start today and see how each small effort compounds into significant achievements. Together, we'll make every day count on your path to a healthier, stronger you.</p>
         <div className='mx-5'>

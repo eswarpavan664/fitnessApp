@@ -22,7 +22,7 @@ import {
 import "./style.css"
 import axios from 'axios';
 import { getLocalValueByKey, setLocalValueByKey } from 'components/GetLocalData';
-
+import bg from "assets/profile1.jpeg"
 const Profile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -41,9 +41,9 @@ const Profile = () => {
   const [calories, setCalories] = useState("")
   const [otp, setOtp] = useState("")
   const [otpToggle, setOtpToggle] = useState(false)
-  const [bmi_colour,setbmi_colour]=useState("")
-  const calculateBmi = useCallback(async()  => {
-   // console.log(weight,height,age)'#ff5722'
+  const [bmi_colour, setbmi_colour] = useState("")
+  const calculateBmi = useCallback(async () => {
+    // console.log(weight,height,age)'#ff5722'
     if (weight && height) {
       const weightMultiplier = asia ? 0.453592 : 1; // 1 lb = 0.453592 kg
       const heightMultiplier = asia ? 0.3048 : 0.01; // 1 ft = 0.3048 meters, 1 cm = 0.01 meters
@@ -53,25 +53,25 @@ const Profile = () => {
 
       const bmiValue = (weightInKg / (heightInMeters * heightInMeters)).toFixed(2);
       setBmi(bmiValue);
-      let color=""
-      if(bmiValue<=18.5){
+      let color = ""
+      if (bmiValue <= 18.5) {
         setbmi_colour("orange")
-        color="orange"
-        
-      }else if(bmiValue>=18.6 && bmiValue<=24.9){
-        setbmi_colour("green")
-           color="green"
+        color = "orange"
 
-      }else if(bmiValue>=25 &&bmiValue<=29.9){
-         setbmi_colour("red")
-            color="red"
-      }else{
-         setbmi_colour("red")
-            color="red"
+      } else if (bmiValue >= 18.6 && bmiValue <= 24.9) {
+        setbmi_colour("green")
+        color = "green"
+
+      } else if (bmiValue >= 25 && bmiValue <= 29.9) {
+        setbmi_colour("red")
+        color = "red"
+      } else {
+        setbmi_colour("red")
+        color = "red"
       }
- 
-      await setLocalValueByKey('bmi_color',color)
-      await setLocalValueByKey('bmi_data',bmiValue)
+
+      await setLocalValueByKey('bmi_color', color)
+      await setLocalValueByKey('bmi_data', bmiValue)
     } else {
       alert("all fields are required...")
     }
@@ -110,11 +110,11 @@ const Profile = () => {
   }
 
 
-  const GetBmiData=async()=>{
-       let bmi =await getLocalValueByKey('bmi_data')
-        let bmi_color =await getLocalValueByKey('bmi_color')
-      setBmi(bmi)
-      setbmi_colour(bmi_color)
+  const GetBmiData = async () => {
+    let bmi = await getLocalValueByKey('bmi_data')
+    let bmi_color = await getLocalValueByKey('bmi_color')
+    setBmi(bmi)
+    setbmi_colour(bmi_color)
   }
 
   useEffect(() => {
@@ -131,7 +131,7 @@ const Profile = () => {
           setFirstName(response?.data?.Data?.FirstName)
           setLastName(response?.data?.Data?.LastName)
           setEmail(response?.data?.Data?.email)
-        //  setAge(response?.data?.Data?.email || "")
+          //  setAge(response?.data?.Data?.email || "")
           setGender(response?.data?.Data?.Gender || "")
           setCountry(response?.data?.Data?.Country || "")
           setCity(response?.data?.Data?.City || "")
@@ -146,7 +146,7 @@ const Profile = () => {
     setOtpToggle(true)
   }
 
-  const handleOtpAndUpdateUser = () =>{
+  const handleOtpAndUpdateUser = () => {
 
   }
 
@@ -164,12 +164,12 @@ const Profile = () => {
     axios.put(apiUrl, postData)
       .then(response => {
         console.log('Response:', response.data);
-         window.location.reload()
+        window.location.reload()
       })
       .catch(error => {
         console.error('Error:', error);
       });
-   // 
+    // 
   }
 
   console.log(data)
@@ -177,8 +177,8 @@ const Profile = () => {
   return (
     <Wrapper>
       <SelfDetails>
-        <Header>Profile</Header>
-        <Picture className='m-0 p-0'></Picture>
+        <div className='bg-light' style={{ height: "43vh", backgroundImage: `url(${bg})`, backgroundPosition: "center", position: "relative" }}><h2 style={{ position: "absolute", bottom: 10, left: 10, color: "white", textShadow: "0 0 10px black", fontSize: "36px" }}>PROFILE</h2></div>
+
         <AboutMe className='m-0 p-0 mt-5' style={{ fontSize: "20px" }}>Welcome to TrainRight - Your Path to a Healthier You!</AboutMe>
         <Details className='m-0 p-0 w-100 mb-5' style={{ fontSize: "16px" }}>
           We're excited to have you on board and embark on this fitness journey together. Whether you're a seasoned fitness enthusiast or just starting out, our app is designed to help you achieve your wellness goals. Get ready to sweat, smile, and thrive with our user-friendly features, personalized workouts, and a supportive community. Let's make every step, rep, and choice count towards a healthier and happier you.
@@ -187,141 +187,141 @@ const Profile = () => {
         </Details>
 
         <div className=' mb-5'>
-        
-            <div className='row border py-3 rounded' >
-              <div style={{ display: otpToggle?"none":"flex", justifyContent: "space-between" }}>
-                <h4 ><span style={{display:otpToggle?"none":""}}>Your Details</span></h4>
-                {
-                  toggle ?
-                    <button style={{ background: "lightblue", padding: "5px 20px", border: "none", borderRadius: "10px", fontSize: "16px", boxShadow: "0 0 5px lightgray", color: "gray" }} onClick={() => {
+
+          <div className='row border py-3 rounded' >
+            <div style={{ display: otpToggle ? "none" : "flex", justifyContent: "space-between" }}>
+              <h4 ><span style={{ display: otpToggle ? "none" : "" }}>Your Details</span></h4>
+              {
+                toggle ?
+                  <button style={{ background: "lightblue", padding: "5px 20px", border: "none", borderRadius: "10px", fontSize: "16px", boxShadow: "0 0 5px lightgray", color: "gray" }} onClick={() => {
+                    setToggle(!toggle)
+
+                  }}>Edit</button> :
+                  <div>
+                    <button style={{ background: "orange", padding: "5px 20px", border: "none", borderRadius: "10px", fontSize: "16px", boxShadow: "0 0 5px lightgray", color: "white", margin: "0 10px" }} onClick={() => {
                       setToggle(!toggle)
-                     
-                    }}>Edit</button> :
-                    <div>
-                      <button style={{ background: "orange", padding: "5px 20px", border: "none", borderRadius: "10px", fontSize: "16px", boxShadow: "0 0 5px lightgray", color: "white", margin: "0 10px" }} onClick={() => {
-                        setToggle(!toggle)
-                        setOtpToggle(false)
-                        }} >Cancel</button>
-                      <button style={{ background: "lightgreen", padding: "5px 20px", border: "none", borderRadius: "10px", fontSize: "16px", boxShadow: "0 0 5px lightgray", color: "gray" }} onClick={updateUserDetails}>Save</button>
-                    </div>
-                }
-              </div>
-              <div className='col-4' style={{display:otpToggle?"none":""}} >
-                {
-                  toggle ?
-                    <div>
-                      <label  >First Name</label>
-                      <h1>{data?.FirstName}</h1>
-                    </div>
-                    : <FormField>
-                      <label>First Name:</label>
-                      <Input
-                        type='text'
-                        placeholder='First Name'
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                      />
-                    </FormField>
-                }
-              </div>
-              <div className='col-4' style={{display:otpToggle?"none":""}} >
-
-                {toggle ?
-                  <div>
-                    <label>Last Name</label>
-                    <h2>{data?.LastName}</h2>
+                      setOtpToggle(false)
+                    }} >Cancel</button>
+                    <button style={{ background: "lightgreen", padding: "5px 20px", border: "none", borderRadius: "10px", fontSize: "16px", boxShadow: "0 0 5px lightgray", color: "gray" }} onClick={updateUserDetails}>Save</button>
                   </div>
-                  :
-                  <FormField>
-                    <label>Last Name:</label>
+              }
+            </div>
+            <div className='col-4' style={{ display: otpToggle ? "none" : "" }} >
+              {
+                toggle ?
+                  <div>
+                    <label  >First Name</label>
+                    <h1>{data?.FirstName}</h1>
+                  </div>
+                  : <FormField>
+                    <label>First Name:</label>
                     <Input
                       type='text'
-                      placeholder='Last Name'
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder='First Name'
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
                     />
                   </FormField>
-                }
+              }
+            </div>
+            <div className='col-4' style={{ display: otpToggle ? "none" : "" }} >
 
-              </div>
-              <div className='col-4' style={{display:otpToggle?"none":""}} >
-                {toggle ?
-                  <div>
-                    <label>Email</label>
-                    <h2>{data?.email}</h2>
-                  </div>
-                  :
-                  <FormField>
-                    <label>Email:</label>
-                    <Input
-                      type='email'
-                      placeholder='Email'
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </FormField>
-                }
+              {toggle ?
+                <div>
+                  <label>Last Name</label>
+                  <h2>{data?.LastName}</h2>
+                </div>
+                :
+                <FormField>
+                  <label>Last Name:</label>
+                  <Input
+                    type='text'
+                    placeholder='Last Name'
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </FormField>
+              }
 
-              </div>
-              <div className='col-4' style={{display:otpToggle?"none":""}} >
-                {toggle ?
-                  <div>
-                    <label>Gender</label>
-                    <h2>{data?.Gender}</h2>
-                  </div>
-                  :
-                  <FormField>
-                    <label>Gender:</label>
-                    <select
-                      value={gender}
-                      onChange={(e) => setGender(e.target.value)}
-                    >
-                      <option value='male'>Male</option>
-                      <option value='female'>Female</option>
-                    </select>
-                  </FormField>
-                }
+            </div>
+            <div className='col-4' style={{ display: otpToggle ? "none" : "" }} >
+              {toggle ?
+                <div>
+                  <label>Email</label>
+                  <h2>{data?.email}</h2>
+                </div>
+                :
+                <FormField>
+                  <label>Email:</label>
+                  <Input
+                    type='email'
+                    placeholder='Email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </FormField>
+              }
 
-              </div>
-              <div className='col-4' style={{display:otpToggle?"none":""}} >
-                {toggle ?
-                  <div>
-                    <label>Country</label>
-                    <h2>{data?.Country}</h2>
-                  </div>
-                  :
-                  <FormField>
-                    <label>Country</label>
-                    <Input
-                      type='text'
-                      placeholder='Country'
-                      value={country}
-                      onChange={(e) => setCountry(e.target.value)}
-                    />
-                  </FormField>
-                }
+            </div>
+            <div className='col-4' style={{ display: otpToggle ? "none" : "" }} >
+              {toggle ?
+                <div>
+                  <label>Gender</label>
+                  <h2>{data?.Gender}</h2>
+                </div>
+                :
+                <FormField>
+                  <label>Gender:</label>
+                  <select
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                  >
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                  </select>
+                </FormField>
+              }
 
-              </div>
-              <div className='col-4' style={{display:otpToggle?"none":""}} >
-                {toggle ?
-                  <div>
-                    <label>City</label>
-                    <h2>{data?.City}</h2>
-                  </div>
-                  :
-                  <FormField>
-                    <label>City</label>
-                    <Input
-                      type='text'
-                      placeholder='City'
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                    />
-                  </FormField>
-                }
+            </div>
+            <div className='col-4' style={{ display: otpToggle ? "none" : "" }} >
+              {toggle ?
+                <div>
+                  <label>Country</label>
+                  <h2>{data?.Country}</h2>
+                </div>
+                :
+                <FormField>
+                  <label>Country</label>
+                  <Input
+                    type='text'
+                    placeholder='Country'
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                  />
+                </FormField>
+              }
 
-              </div>
-              {/* <div className='col-12'>
+            </div>
+            <div className='col-4' style={{ display: otpToggle ? "none" : "" }} >
+              {toggle ?
+                <div>
+                  <label>City</label>
+                  <h2>{data?.City}</h2>
+                </div>
+                :
+                <FormField>
+                  <label>City</label>
+                  <Input
+                    type='text'
+                    placeholder='City'
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                  />
+                </FormField>
+              }
+
+            </div>
+            {/* <div className='col-12'>
               {otpToggle && <div className='row justify-content-center align-items-center'>
                   <div className='col-3'>
                    <div>
@@ -343,8 +343,8 @@ const Profile = () => {
 
               </div> */}
 
-            </div>
-      
+          </div>
+
 
 
 

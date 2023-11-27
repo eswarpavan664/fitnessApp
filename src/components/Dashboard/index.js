@@ -63,7 +63,7 @@ const Dashboard = () => {
 
   return (
 
-    <div className='' style={{ height: "auto", background: "white", padding: "10px", margin: "10px" }}>
+    <div className='mt-4' style={{ height: "auto", background: "white", padding: "10px", margin: "10px" }}>
       <div style={{ backgroundImage: `url(${banner})`, height: "43vh", position: "relative" }}>
         <h1 style={{ position: "absolute", bottom: 20, fontSize: "3rem", left: 30, fontWeight: "bold", color: "white", textShadow: "0 0 10px black" }}>DASHBOARD</h1>
       </div>

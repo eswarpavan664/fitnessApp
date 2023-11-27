@@ -38,10 +38,11 @@ export const WorkOutForm = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin: 2rem;
+  margin: 1rem;
+  margin-top: 2rem;
   background: #fff;
   border-radius: 10px;
-  padding: 2rem;
+  padding: 1rem;
   overflow: hidden;
   table {
     font-size: 1.2rem;

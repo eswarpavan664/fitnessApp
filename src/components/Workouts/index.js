@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { WorkOutForm, Wrapper, Container, Header, Picture } from './styles';
 import "./style.css"
+import bg from "assets/workouts.jpg"
+
+
+
 const getWorkouts = (state) => state.workouts.data;
 
 const Workout = () => {
@@ -144,7 +148,7 @@ const Workout = () => {
       { name: "Thruster", url: "https://www.youtube.com/embed/L219ltL15zk?si=dL42wCnRSKzYfGz9" },
     ],
     "Cardio": [
-       
+
       { name: "Stairmaster", url: "https://www.youtube.com/embed/xSB39wbMz4w?si=NF7fh9XqmHnVMA2T" },
       { name: "Stationary Bike", url: "https://www.youtube.com/embed/NwwDBARCGgo?si=Gp0qtz1m7huVbU_R" },
       { name: "Elliptical Machine", url: "https://www.youtube.com/embed/YWfswVvOaiI?si=hhx93CV3uyA_XkUR" },
@@ -192,15 +196,15 @@ const Workout = () => {
 
   return (
     <Wrapper>
-      <Header>Workouts</Header>
-      <Picture></Picture>
+      <div className='bg-light' style={{ height: "43vh", backgroundImage: `url(${bg})`, backgroundPosition: "center", position: "relative" }}><h2 style={{ position: "absolute", bottom: 10, left: 10, color: "white", textShadow: "0 0 10px black", fontSize: "36px" }}>WORKOUTS</h2></div>
+
       <Container>
-        <p className='my-5' style={{fontSize:"16px"}}>Welcome to our Workouts page, where your journey to a healthier, stronger, and happier you begins! Physical fitness isn't just about looking good; it's about feeling your best and living your life to the fullest. We're here to inspire and motivate you on your path to a more active and vibrant lifestyle. Get ready to experience the joy of working out and discover the transformative power of prioritizing your physical well-being. Let's get moving!</p>
+        <p className='my-5' style={{ fontSize: "16px" }}>Welcome to our Workouts page, where your journey to a healthier, stronger, and happier you begins! Physical fitness isn't just about looking good; it's about feeling your best and living your life to the fullest. We're here to inspire and motivate you on your path to a more active and vibrant lifestyle. Get ready to experience the joy of working out and discover the transformative power of prioritizing your physical well-being. Let's get moving!</p>
         <div>
 
 
           <div class="soft-ui-container">
-            <div style={{display:"flex", alignItems:"center"}}>
+            <div style={{ display: "flex", alignItems: "center" }}>
               {/* <div class="dropdown-container">
                 <label class="form-label" for="dayDropdown">Select Day:</label>
                 <select class="form-select" id="dayDropdown" value={selectedDay} onChange={handleDayChange}>
