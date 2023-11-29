@@ -91,7 +91,7 @@ function Queries() {
 
   console.log(data)
   return (
-    <div className='p-4'>
+    <div className='p-4 pb-0'>
       <div className="table-container">
           
           <div>
@@ -114,7 +114,7 @@ function Queries() {
               </div>
             </div>
 
-            <div className='mt-5'>
+            <div className='mt-5' style={{height:"70vh", overflowY:"scroll"}}>
               {data?.map((item)=>(
                 
                 <>
